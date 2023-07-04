@@ -22,7 +22,7 @@ const DocsCallout = (props) => {
       <br />
       For more information please visit our official{' '}
       <CLink href={_href} target="_blank">
-        documentation of CoreUI Components Library for React.js
+        Infeet.com
       </CLink>
       .
     </CCallout>

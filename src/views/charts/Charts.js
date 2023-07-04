@@ -19,7 +19,7 @@ const Charts = () => {
         <DocsCallout
           name="Chart"
           href="components/chart"
-          content="React wrapper component for Chart.js 3.0, the most popular charting library."
+          content="this is our chart area"
         />
       </CCol>
       <CCol xs={6}>
