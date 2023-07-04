@@ -20,6 +20,7 @@ import {
 } from '@coreui/react'
 import { CChartLine } from '@coreui/react-chartjs'
 import { getStyle, hexToRgba } from '@coreui/utils'
+import Charts from '../charts/Charts'
 import CIcon from '@coreui/icons-react'
 import {
   cibCcAmex,
@@ -180,9 +181,10 @@ const Dashboard = () => {
 
   return (
     <>
-      <WidgetsDropdown />
+      {/* <WidgetsDropdown /> */}
+      <Charts/>
       <CCard className="mb-4">
-        <CCardBody>
+        {/* <CCardBody>
           <CRow>
             <CCol sm={5}>
               <h4 id="traffic" className="card-title mb-0">
@@ -292,7 +294,7 @@ const Dashboard = () => {
               },
             }}
           />
-        </CCardBody>
+        </CCardBody> */}
         {/* <CCardFooter>
           <CRow xs={{ cols: 1 }} md={{ cols: 5 }} className="text-center">
             {progressExample.map((item, index) => (
