@@ -52,25 +52,25 @@ const _nav = [
   {
     component: CNavItem,
     name: 'wallets',
-    to: '/charts',
+    to: '/wallet',
     icon: <CIcon icon={cilWallet} customClassName="nav-icon" />,
   },
   {
     component: CNavItem,
     name: 'Markets',
-    to: '/charts',
+    to: '/market',
     icon: <CIcon icon={cilMediaRecord} customClassName="nav-icon" />,
   },
   {
     component: CNavItem,
     name: 'Trade',
-    to: '/charts',
+    to: '/trade',
     icon: <CIcon icon={cilChartPie} customClassName="nav-icon" />,
   },
   {
     component: CNavItem,
     name: 'Learn',
-    to: '/charts',
+    to: '/learn',
     icon: <CIcon icon={cilPencil} customClassName="nav-icon" />,
   },
   // {

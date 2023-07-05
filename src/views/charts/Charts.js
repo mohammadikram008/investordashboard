@@ -26,7 +26,7 @@ const Charts = () => {
         />
       </CCol> */}
   
-      <CCol xs={4}>
+      <CCol  xs={12} sm={12} lg={3} md={6}>
         <CCard className="mb-4">
           <CCardHeader>Portfolio Performance</CCardHeader>
           <CCardBody>
@@ -56,7 +56,7 @@ const Charts = () => {
           </CCardBody>
         </CCard>
       </CCol>
-      <CCol xs={4}>
+      <CCol  xs={12} sm={12} md={6} lg={3}>
         <CCard className="mb-4">
           <CCardHeader>Market Performance</CCardHeader>
           <CCardBody>
@@ -88,7 +88,7 @@ const Charts = () => {
       </CCol>
     </CRow>
     <CRow className='d-flex justify-content-center'>
-    <CCol xs={3} >
+    <CCol xs={12} sm={12} lg={3} md={6}>
         <CCard className="mb-4">
           <CCardHeader>Asset Allocation</CCardHeader>
           <CCardBody>
@@ -106,7 +106,7 @@ const Charts = () => {
           </CCardBody>
         </CCard>
       </CCol>
-      <CCol xs={4}>
+      <CCol  xs={12} sm={12} lg={3} md={6}>
         <CCard className="mb-4">
           <CCardHeader>List of holdings and percentage of total portfolio</CCardHeader>
           <CCardBody>

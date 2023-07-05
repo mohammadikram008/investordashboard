@@ -11,6 +11,8 @@ const DefaultLayout = () => {
           <AppContent />
         </div>
         <AppFooter />
+
+        
       </div>
     </div>
   )
