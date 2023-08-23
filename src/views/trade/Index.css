@@ -1,0 +1,14 @@
+.App {
+    display: flex;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    padding: 20px;
+  }
+  
+  .trade-form form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  

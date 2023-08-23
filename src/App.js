@@ -1,7 +1,7 @@
 import React, { Component, Suspense } from 'react'
 import { HashRouter, Route, Routes } from 'react-router-dom'
 import './scss/style.scss'
-
+import Fallback from './components/Fallback'
 const loading = (
   <div className="pt-3 text-center">
     <div className="sk-spinner sk-spinner-pulse"></div>
@@ -21,7 +21,7 @@ class App extends Component {
   render() {
     return (
       <HashRouter>
-        <Suspense fallback={loading}>
+        <Suspense fallback={<Fallback/>}>
           <Routes>
            <Route exact path="/login" name="Login Page" element={<Login />} />
             <Route exact path="/register" name="Register Page" element={<Register />} />
