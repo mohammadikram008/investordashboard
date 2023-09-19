@@ -15,6 +15,8 @@ import {
   cilSpeedometer,
   cilStar,
   cilWallet,
+  cilHome,
+  cilHouse
 } from '@coreui/icons'
 import { CNavGroup, CNavItem, CNavTitle } from '@coreui/react'
 
@@ -49,30 +51,65 @@ const _nav = [
     component: CNavTitle,
     name: 'Components',
   },
+  // {
+  //   component: CNavGroup,
+  //   name: 'Properties',
+  //   to: '/explore/property',
+  //   icon: <CIcon icon={cilWallet} customClassName="nav-icon" />,
+  //   items: [
+  //     {
+  //       component: CNavItem,
+  //       name: 'Properties',
+  //       to: '/explore/property',
+  //     },
+  //     {
+  //       component: CNavItem,
+  //       name: 'Owner Access',
+  //       to: '/explore/OwnerAcess',
+  //     },
+  //     // {
+  //     //   component: CNavItem,
+  //     //   name: 'Provicy',
+  //     //   to: '/Setting/Provicy',
+  //     // },
+  //   ],
+  // },
   {
     component: CNavItem,
-    name: 'wallets',
-    to: '/wallet',
-    icon: <CIcon icon={cilWallet} customClassName="nav-icon" />,
+    name: 'My Porfolio',
+    to: '/portfolio',
+    icon: <CIcon icon={cilHouse} customClassName="nav-icon" />,
   },
   {
     component: CNavItem,
-    name: 'Markets',
-    to: '/market',
-    icon: <CIcon icon={cilMediaRecord} customClassName="nav-icon" />,
+    name: 'Properties',
+    to: '/property',
+    icon: <CIcon icon={cilHome} customClassName="nav-icon" />,
   },
-  {
-    component: CNavItem,
-    name: 'Trade',
-    to: '/trade',
-    icon: <CIcon icon={cilChartPie} customClassName="nav-icon" />,
-  },
-  {
-    component: CNavItem,
-    name: 'Learn',
-    to: '/learn',
-    icon: <CIcon icon={cilPencil} customClassName="nav-icon" />,
-  },
+  // {
+  //   component: CNavItem,
+  //   name: 'wallets',
+  //   to: '/wallet',
+  //   icon: <CIcon icon={cilWallet} customClassName="nav-icon" />,
+  // },
+  // {
+  //   component: CNavItem,
+  //   name: 'Markets',
+  //   to: '/market',
+  //   icon: <CIcon icon={cilMediaRecord} customClassName="nav-icon" />,
+  // },
+  // {
+  //   component: CNavItem,
+  //   name: 'Trade',
+  //   to: '/trade',
+  //   icon: <CIcon icon={cilChartPie} customClassName="nav-icon" />,
+  // },
+  // {
+  //   component: CNavItem,
+  //   name: 'Learn',
+  //   to: '/learn',
+  //   icon: <CIcon icon={cilPencil} customClassName="nav-icon" />,
+  // },
   // {
   //   component: CNavItem,
   //   name: 'Charts',
@@ -313,37 +350,37 @@ const _nav = [
   //     text: 'NEW',
   //   },
   // },
-  {
-    component: CNavTitle,
-    name: 'Extras',
-  },
-  {
-    component: CNavGroup,
-    name: 'Pages',
-    icon: <CIcon icon={cilStar} customClassName="nav-icon" />,
-    items: [
-      {
-        component: CNavItem,
-        name: 'Login',
-        to: '/login',
-      },
-      {
-        component: CNavItem,
-        name: 'Register',
-        to: '/register',
-      },
-      // {
-      //   component: CNavItem,
-      //   name: 'Error 404',
-      //   to: '/404',
-      // },
-      // {
-      //   component: CNavItem,
-      //   name: 'Error 500',
-      //   to: '/500',
-      // },
-    ],
-  },
+  // {
+  //   component: CNavTitle,
+  //   name: 'Extras',
+  // },
+  // {
+  //   component: CNavGroup,
+  //   name: 'Registeration',
+  //   icon: <CIcon icon={cilStar} customClassName="nav-icon" />,
+  //   items: [
+  //     {
+  //       component: CNavItem,
+  //       name: 'Login',
+  //       to: '/login',
+  //     },
+  //     {
+  //       component: CNavItem,
+  //       name: 'Register',
+  //       to: '/register',
+  //     },
+  //     // {
+  //     //   component: CNavItem,
+  //     //   name: 'Error 404',
+  //     //   to: '/404',
+  //     // },
+  //     // {
+  //     //   component: CNavItem,
+  //     //   name: 'Error 500',
+  //     //   to: '/500',
+  //     // },
+  //   ],
+  // },
   // {
   //   component: CNavItem,
   //   name: 'Docs',

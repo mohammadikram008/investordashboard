@@ -1,4 +1,10 @@
 import React from 'react'
+//property
+const Properties = React.lazy(() => import('./views/explore/propertyhome/Properties'))
+const OwnerAcess = React.lazy(() => import('./views/explore/ownerpropertydertail/OwnerProperty'))
+const SingleProperty = React.lazy(() => import('./views/explore/propertydetail/PropertyDetail'))
+const Portfolio = React.lazy(() => import('./views/portfolio/Portfolio'))
+
 
 const Dashboard = React.lazy(() => import('./views/dashboard/Dashboard'))
 const Wallet = React.lazy(() => import('./views/wallet/Wallet'))
@@ -57,6 +63,10 @@ const Widgets = React.lazy(() => import('./views/widgets/Widgets'))
 const routes = [
   { path: '/', exact: true, name: 'Home' },
   { path: '/dashboard', name: 'Dashboard', element: Dashboard },
+  { path: '/property', name: 'property', element: Properties },
+  { path: '/explore/OwnerAcess', name: 'OwnerAcces', element: OwnerAcess },
+  { path: '/property/propertydetil', name: 'propertydetil', element: SingleProperty },
+  { path: '/portfolio', name: 'My Portfolio', element: Portfolio },
   { path: '/wallet', name: 'Wallet', element: Wallet},
   { path: '/market', name: 'Market', element: Market},
   { path: '/trade', name: 'Trade', element: Trade},

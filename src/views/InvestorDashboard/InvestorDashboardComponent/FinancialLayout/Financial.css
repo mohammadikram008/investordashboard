@@ -1,0 +1,16 @@
+.btn-col{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 10px;
+
+}
+.btn-transection{
+    border: 1px solid black ;
+    background: cyan;
+}
+.btn-transection:hover{
+    /* background-color: aquamarine; */
+    transform: scale(1.2);
+    background: cyan;
+}

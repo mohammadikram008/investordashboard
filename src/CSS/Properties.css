@@ -1,0 +1,85 @@
+.fh5co-property{
+    border-top-right-radius:20px ;
+    border-top-left-radius: 20px;
+    background-color: rgb(230, 229, 229);
+    width: 300px;
+  
+    
+    /* width: 30%; */
+    /* height: 20%; */
+}
+.fh5co-property:hover{
+    transform: scale(1.1);
+}
+.img-responsive{
+
+    width: 300px;
+    border-top-right-radius:20px ;
+    border-top-left-radius: 20px;
+}
+.fh5co-property-innter{
+   padding: 10px;
+    margin-top: 20px;
+}
+.rented{
+    /* width: 100px !important; */
+    margin-left: 25px;
+    /* margin-top: 100px; */
+    border: 1px solid;
+    padding: 5px;
+    margin-bottom: 20px !important;
+    border-radius: 5px;
+}
+.custom-carousel .carousel-item {
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+    height: 150px; /* Adjust the desired image height in pixels */
+  }
+.custom-carousel .carousel-item img {
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+    height: 150px; /* Adjust the desired image height in pixels */
+  }
+.custom-carousel .carousel-indicators li {
+    /* Customize the size of the dots */
+    
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+    /* margin-right: 5px; */
+  }
+  
+  .custom-carousel .carousel-control-prev-icon,
+  .custom-carousel .carousel-control-next-icon {
+    /* Customize the size of the previous/next icons */
+    width: 30px;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+    height: 30px;
+    display: none;
+  }
+  .custom-carousel .carousel-control-next {
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+  }
+.contain-div{
+    margin-top: 10px;
+}
+.property-heading{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-bottom: 20PX;
+}
+.searchbar input{
+  /* right: 0px; */
+  border: 1px solid #DF9976;
+  border-radius: 10px;
+  padding: .3rem;
+  
+}
+
+.property-heading h1{
+  width: 100%;
+  /* justify-content: start; */
+
+}
