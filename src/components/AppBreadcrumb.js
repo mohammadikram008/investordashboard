@@ -4,6 +4,7 @@ import { Link, useLocation } from 'react-router-dom'
 import routes from '../routes'
 
 import { CBreadcrumb, CBreadcrumbItem } from '@coreui/react'
+import { Fragment } from 'react'
 
 const AppBreadcrumb = () => {
   const currentLocation = useLocation().pathname
@@ -32,7 +33,8 @@ const AppBreadcrumb = () => {
   const breadcrumbs = getBreadcrumbs(currentLocation)
 
   return (
-    <CBreadcrumb className="m-0 ms-2">
+    <Fragment>
+    {/* <CBreadcrumb className="m-0 ms-2">
       <CBreadcrumbItem href="/">Home</CBreadcrumbItem>
       {breadcrumbs.map((breadcrumb, index) => {
         return (
@@ -44,7 +46,8 @@ const AppBreadcrumb = () => {
           </CBreadcrumbItem>
         )
       })}
-    </CBreadcrumb>
+    </CBreadcrumb> */}
+    </Fragment>
   )
 }
 

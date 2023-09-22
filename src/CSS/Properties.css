@@ -23,7 +23,7 @@
 }
 .rented{
     /* width: 100px !important; */
-    margin-left: 25px;
+    margin-left: 5px;
     /* margin-top: 100px; */
     border: 1px solid;
     padding: 5px;
@@ -66,20 +66,10 @@
 }
 .property-heading{
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
     align-items: center;
     margin-bottom: 20PX;
-}
-.searchbar input{
-  /* right: 0px; */
-  border: 1px solid #DF9976;
-  border-radius: 10px;
-  padding: .3rem;
-  
+    color: #ca974b;
 }
 
-.property-heading h1{
-  width: 100%;
-  /* justify-content: start; */
 
-}

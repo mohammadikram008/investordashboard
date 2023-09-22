@@ -44,7 +44,7 @@ const Index = () => {
                             <ul>
                                 <li onClick={() => handleChange("Details")}>Details</li>|
                                 <li onClick={() => handleChange("Financial")}>Financial</li>|
-                                <li className="tooltip-btn" data-tooltip="Owner Access">Owner's</li>
+                                <li className="tooltip-btn" data-tooltip="Owner Access">Owner Area</li>
                             </ul>
                         </div>
 

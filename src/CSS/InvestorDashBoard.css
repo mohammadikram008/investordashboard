@@ -116,18 +116,24 @@
     visibility: hidden;
     transition: opacity 0.3s, visibility 0.3s;
 }
-
+.single-property-detail-div{
+height: 100%;
+display: flex;
+justify-content: center;
+align-items:start;
+flex-direction: column;
+}
 /* Show the tooltip on hover */
 .tooltip-btn:hover::before {
     opacity: 1;
     visibility: visible;
 }
 .img-investor{
-    height: 200px;
+    /* height: 200px; */
     width: 100%;
     background-size: cover; /* This ensures the image covers the entire container */
     background-position: center;
-    /* object-fit: cover; */
+    object-fit: cover;
     /* object-position: 5px; */
   }
   .detail-slide .carousel-item {
@@ -170,3 +176,73 @@
         width: 90%;
     }
 }
+
+/* image section */
+/* Add CSS rules to style your Image Gallery and Modal */
+
+.image-gallery {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  .image-thumbnail {
+    margin: 10px;
+    cursor: pointer;
+  }
+  
+  .image-thumbnail img {
+    max-width: 100%;
+    height: auto;
+    transition: transform 0.2s;
+  }
+  
+  .image-thumbnail img:hover {
+    transform: scale(1.1);
+  }
+  
+  .modal-content {
+    position: relative;
+    top: 20%;
+    left: 49%;
+    right: 20%;
+    transform: translate(-50%, -50%);
+    max-width: 80%;
+    max-height: 80%;
+    background: #fff;
+    padding: 20px;
+    border-radius: 4px;
+    overflow: auto;
+  }
+  
+  .modal-overlay {
+    background: rgba(0, 0, 0, 0.7);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+  
+  .close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 24px;
+    color: #333;
+  }
+  
+  .modal-image {
+    margin-top: 5%;
+    max-width: 90%;
+    max-height: 40%;
+    display: block;
+    margin: 0 auto;
+  }
+  

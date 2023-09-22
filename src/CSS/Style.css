@@ -5,6 +5,9 @@
     background-color: #324466;
     color: white;
 }
+.cards-main{
+  height: 85%;
+}
 .loader {
     animation:spin 1s infinite linear;
     border:solid 2vmin transparent;

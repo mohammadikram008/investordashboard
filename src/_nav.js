@@ -76,7 +76,7 @@ const _nav = [
   // },
   {
     component: CNavItem,
-    name: 'My Porfolio',
+    name: 'My Portfolio',
     to: '/portfolio',
     icon: <CIcon icon={cilHouse} customClassName="nav-icon" />,
   },
@@ -134,7 +134,7 @@ const _nav = [
       },
       {
         component: CNavItem,
-        name: 'Provicy',
+        name: 'Privacy Policy',
         to: '/Setting/Provicy',
       },
     ],

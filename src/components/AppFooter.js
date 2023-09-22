@@ -7,7 +7,7 @@ const AppFooter = () => {
     <CRow>
       <CCol xs={12} lg={12} sm={12} md={12}>
       <div >
-      <p>&copy; 2023 InFeet Inc. All Rights Reserved. </p>
+      {/* <p>&copy; 2023 InFeet Inc. All Rights Reserved. </p> */}
           {/* Investor Dashboard
         <a href="/" target="_blank" rel="noopener noreferrer">
         </a>

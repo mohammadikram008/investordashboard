@@ -89,7 +89,7 @@ const Charts = () => {
     </CRow>
     <CRow className='d-flex justify-content-center'>
     <CCol xs={12} sm={12} lg={3} md={6}>
-        <CCard className="mb-4">
+        <CCard className="mb-5">
           <CCardHeader>Asset Allocation</CCardHeader>
           <CCardBody>
             <CChartDoughnut
@@ -107,7 +107,7 @@ const Charts = () => {
         </CCard>
       </CCol>
       <CCol  xs={12} sm={12} lg={3} md={6}>
-        <CCard className="mb-4">
+        <CCard className="cards-main mb-4">
           <CCardHeader>List of holdings and percentage of total portfolio</CCardHeader>
           <CCardBody>
             <CChartBar
