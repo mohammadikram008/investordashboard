@@ -44,12 +44,13 @@ const Index = () => {
                             <ul>
                                 <li onClick={() => handleChange("Details")}>Details</li>|
                                 <li onClick={() => handleChange("Financial")}>Financial</li>|
-                                <li className="tooltip-btn" data-tooltip="Owner Access">Owner Area</li>
+                                {/* <li className="tooltip-btn" data-tooltip="Owner Access">Owner Area</li> */}
+                                <li className="">Owner's Area</li>
                             </ul>
                         </div>
 
                     </Col>
-                    <Col md='10'>
+                    <Col md='10 m-2'>
 
                         {loadfram === "Details" ? <Details /> : <Financial />}
 

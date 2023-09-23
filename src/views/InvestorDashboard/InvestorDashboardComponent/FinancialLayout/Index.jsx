@@ -1,7 +1,7 @@
 import React, { Fragment, useState } from 'react'
 import { Row,Col } from 'reactstrap'
 import './Financial.css'
-import { Button } from '@mui/material'
+import { button} from '@coreui/coreui'
 import Summary from './Summary/Index'
 import Transection from './Transection/Index'
 import Report from './Report/Index'
@@ -14,11 +14,11 @@ setName(props);
     <Fragment>
     <Row className='m-0'>
         <Col md='12' className='btn-col'>
-            <Button className='btn-transection'  onClick={()=>handdleChange("Summary")}>Summary</Button>
-            <Button className='btn-transection'  onClick={()=>handdleChange("Transection")}>Transection</Button>
-            <Button className='btn-transection'  onClick={()=>handdleChange("Report")}>Report</Button>
+            <button className='btn-transection'  onClick={()=>handdleChange("Summary")}>Summary</button>
+            <button className='btn-transection'  onClick={()=>handdleChange("Transection")}>Transection</button>
+            <button className='btn-transection'  onClick={()=>handdleChange("Report")}>Report</button>
         </Col>
-        <Col md='12'>
+        <Col md='12 mt-4'>
           {name==="Summary"?<Summary/>:name==="Transection"?<Transection/>:<Report/>}
         </Col>
     </Row>

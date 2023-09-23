@@ -131,10 +131,15 @@ flex-direction: column;
 .img-investor{
     /* height: 200px; */
     width: 100%;
+    border-radius: 10px;
     background-size: cover; /* This ensures the image covers the entire container */
     background-position: center;
     object-fit: cover;
     /* object-position: 5px; */
+  }
+  .img-investor:hover{
+    transform: scale(1.1);
+    
   }
   .detail-slide .carousel-item {
 

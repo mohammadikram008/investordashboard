@@ -6,6 +6,7 @@ import ReactPaginate from 'react-paginate';
 
 const Index = ({ properties,itemsp }) => {
   const navigate = useNavigate();
+  const [searchType, setSearchType] = useState('location');
   const [searchTerm, setSearchTerm] = useState('');
   const [currentPage, setCurrentPage] = useState(0);
   const itemsPerPage = 3; // Number of items to display per page
@@ -42,12 +43,18 @@ const Index = ({ properties,itemsp }) => {
         // }
 
     };
+    const handleSearchTypeChange = (event) => {
+      setSearchType(event.target.value);
+    };
   return (
     <Fragment>
-      <div className='searchbar'>
-        {/* <label>Search by Symbol:</label> */}
+      {/* <div className='searchbar'>
         <input type="text" placeholder='Search by Location' value={searchTerm} onChange={handleSearch} />
-      </div>
+      </div> */}
+       <select value={searchType} onChange={handleSearchTypeChange}>
+          <option value="location">Location</option>
+          <option value="name">Property Name</option>
+        </select>
       <table className='property-table'>
         <thead className='border'>
           <tr>
@@ -56,9 +63,9 @@ const Index = ({ properties,itemsp }) => {
             <th>Property Price</th>
           </tr>
         </thead>
-        <tbody className='border'>
+        <tbody className='border '>
           {paginatedProperties.map((property, index) => (
-            <tr key={index} className='border'>
+            <tr key={index} className='border '>
               <td>
                 <Link to='/property/propertydetail'>{property. propertyName}</Link></td>
               <td>{property.propertyLocation}</td>

@@ -1,16 +1,23 @@
 .btn-col{
     display: flex;
+    color: #CA974B;
     justify-content: space-around;
     align-items: center;
     margin-top: 10px;
+    /* border-bottom: 1px solid #CA974B; */
 
 }
 .btn-transection{
-    border: 1px solid black ;
-    background: cyan;
+    color: #CA974B;
+    border: 1px solid #CA974B ;
+    border-radius: 10px;
+    padding: 5px;
+    /* background: cyan; */
 }
 .btn-transection:hover{
     /* background-color: aquamarine; */
-    transform: scale(1.2);
-    background: cyan;
+    /* transform: scale(1.2); */
+    /* background: cyan; */
+    border-color: #998972;
+    color:#998972 ;
 }

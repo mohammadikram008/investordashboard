@@ -110,7 +110,7 @@ const PropertyDetail = () => {
                 </Col>
                 <Col md='8'>
                     <div className='single-property-detail-div'>
-                        <h5>House ,Rented</h5>
+                        <h5>House, Rented</h5>
                         <h5>House no 45, Street 45, E11/4</h5>
                         <h5>Bed Rooms: 4</h5>
                         <h5>Bath Rooms: 2</h5>
