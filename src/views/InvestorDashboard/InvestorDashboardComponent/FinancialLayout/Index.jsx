@@ -15,8 +15,8 @@ setName(props);
     <Row className='m-0'>
         <Col md='12' className='btn-col'>
             <button className='btn-transection'  onClick={()=>handdleChange("Summary")}>Summary</button>
-            <button className='btn-transection'  onClick={()=>handdleChange("Transection")}>Transection</button>
-            <button className='btn-transection'  onClick={()=>handdleChange("Report")}>Report</button>
+            <button className='btn-transection'  onClick={()=>handdleChange("Transection")}>Transactions</button>
+            <button className='btn-transection'  onClick={()=>handdleChange("Report")}>Reports</button>
         </Col>
         <Col md='12 mt-4'>
           {name==="Summary"?<Summary/>:name==="Transection"?<Transection/>:<Report/>}

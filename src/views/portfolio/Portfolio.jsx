@@ -11,29 +11,38 @@ const Portfolio = () => {
   const propertyData = [
     {
       id: 1,
-      propertyName: 'Property 1',
-      propertyLocation: 'Location 1',
-      propertyPrice: 100000,
-      propertyDescription: 'Description for Property 1',
-      image: 'https://azizidevelopments.com/assets/images/projects/1603263070389162780.jpg',
-    },
-    {
+      Name: 'House E-11/4',
+      Address:'House no 45, Street 45, E-11/4',
+      City: 'Islamabad',
+      Country: 'Pakistan',
+      Type: 'FLat',
+      Price: "$ 6575",
+      // propertyDescription: 'Description for Property 1',
+      // image: 'https://azizidevelopments.com/assets/images/projects/1603263070389162780.jpg',
+  },
+  {
       id: 2,
-      propertyName: 'Property 2',
-      propertyLocation: 'Location 2',
-      propertyPrice: 150000,
-      propertyDescription: 'Description for Property 2',
-      image: 'https://azizidevelopments.com/assets/images/projects/15795279721750900140.jpg',
-    },
-    {
-        id: 2,
-        propertyName: 'Property 2',
-        propertyLocation: 'Location 2',
-        propertyPrice: 150000,
-        propertyDescription: 'Description for Property 2',
-        image: 'https://azizidevelopments.com/assets/images/projects/1624972383238283745.jpg',
-      },
-     
+      Name: 'Appartment DHA/2',
+      Address: 'Appartment no 65, Street 1, DHA/2',
+      City: 'Lahore',
+      Country: 'Pakistan',
+      Type: 'Appartment',
+      Price: "$ 1598",
+      // propertyDescription: 'Description for Property 2',
+      // image: 'https://azizidevelopments.com/assets/images/projects/15795279721750900140.jpg',
+  },
+  {
+      id: 3,
+      Name: 'House 4',
+      Address: 'House no 4, Street 7, Peshawar ',
+      City: 'Peshawar',
+      Country: 'Pakistan',
+      Type: 'Home',
+      Price: '$ 1500',
+      // propertyDescription: 'Description for Property 2',
+      // image: 'https://azizidevelopments.com/assets/images/projects/1624972383238283745.jpg',
+  },
+
     // Add more properties as needed
   ];
   const settings = {
@@ -89,13 +98,13 @@ const Portfolio = () => {
             // caption: 'Slide 2',
           },
           {
-      
+
             src: `https://azizidevelopments.com/assets/images/projects/1624972383238283745.jpg`,
             // altText: 'Slide 3',
             // caption: 'Slide 3',
-      
-      
-      
+
+
+
           }
         ],
       },
@@ -105,7 +114,7 @@ const Portfolio = () => {
         date: '2023-09-20',
         price: "680,000",
         location: '456 Park Avenue, Town',
-        imageUrl:  [
+        imageUrl: [
           {
             src: `https://azizidevelopments.com/assets/images/projects/1603263070389162780.jpg`,
             // altText: 'Slide 1',
@@ -117,13 +126,13 @@ const Portfolio = () => {
             // caption: 'Slide 2',
           },
           {
-      
+
             src: `https://azizidevelopments.com/assets/images/projects/1624972383238283745.jpg`,
             // altText: 'Slide 3',
             // caption: 'Slide 3',
-      
-      
-      
+
+
+
           }
         ],
       },
@@ -135,9 +144,11 @@ const Portfolio = () => {
     <Fragment>
 
       <section className="upcoming-activities">
-        <h2>My Portfolio</h2>
+       
+        <h1>My Portfolio</h1>
+       
         <Row className='m-0'>
-        <Col md='12' >
+          <Col md='12' >
             {/* {upcomingActivities.map((activity) => (
               
                 <div className="mian-proprty-div" data-animate-effect="fadeIn" key={activity.id}>
@@ -167,7 +178,7 @@ const Portfolio = () => {
 
               
             ))} */}
- <Pagination itemsPerPage={5} properties={propertyData} />
+            <Pagination itemsPerPage={2} properties={propertyData} />
 
           </Col>
         </Row>

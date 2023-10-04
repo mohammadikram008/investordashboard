@@ -42,7 +42,7 @@ const Index = () => {
                     <Col md='12' className='detail-col'>
                         <div className='mini-navbar'>
                             <ul>
-                                <li onClick={() => handleChange("Details")}>Details</li>|
+                                <li  onClick={() => handleChange("Details")}>Details</li>|
                                 <li onClick={() => handleChange("Financial")}>Financial</li>|
                                 {/* <li className="tooltip-btn" data-tooltip="Owner Access">Owner Area</li> */}
                                 <li className="">Owner's Area</li>

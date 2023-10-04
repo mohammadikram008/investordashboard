@@ -1,13 +1,13 @@
 .upcoming-activities{
     width: 100%;
   }
-  .upcoming-activities h2 {
+  .upcoming-activities h1 {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
     color: #ca974b;
-    height: 10vh;
+    /* height: 10vh; */
   }
   .activity-list{
     display: flex;

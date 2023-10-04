@@ -51,7 +51,11 @@
     margin-bottom: 10px;
 
 }
-
+.detail-class-col{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .mini-navbar {
     display: flex;
     justify-content: center;
@@ -67,7 +71,9 @@
     width: 80%;
     list-style: none;
 }
-
+.mini-navbar ul li:hover  {
+  color: #CA974B;
+}
 .transection-mian-row {
     border: 1px solid;
 }

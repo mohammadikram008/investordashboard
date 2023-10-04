@@ -82,8 +82,8 @@ const _nav = [
   },
   {
     component: CNavItem,
-    name: 'Properties',
-    to: '/property',
+    name: 'Explore',
+    to: '/explore',
     icon: <CIcon icon={cilHome} customClassName="nav-icon" />,
   },
   // {
@@ -118,7 +118,7 @@ const _nav = [
   // },
   {
     component: CNavGroup,
-    name: 'Setting',
+    name: 'Settings',
     to: '/buttons',
     icon: <CIcon icon={cilCursor} customClassName="nav-icon" />,
     items: [

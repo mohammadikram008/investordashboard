@@ -10,7 +10,7 @@
 .btn-transection{
     color: #CA974B;
     border: 1px solid #CA974B ;
-    border-radius: 10px;
+    border-radius: 2px;
     padding: 5px;
     /* background: cyan; */
 }
@@ -20,4 +20,30 @@
     /* background: cyan; */
     border-color: #998972;
     color:#998972 ;
+}
+
+.date-div{
+background-color: #998972;
+padding: 0.5rem;
+color: white;
+}
+#fromDate,#toDate{
+    margin-left: 1rem;
+}
+.reports-headings:hover{
+    color: #CA974B;
+    cursor: pointer;
+
+}
+.report-date-div{
+    margin-top: 1rem;
+}
+.report-date-div h4  { 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    color: #CA974B;
+
 }

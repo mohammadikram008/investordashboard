@@ -96,7 +96,7 @@ const PropertyDetail = () => {
                 {/* <p className='investor-title'>{data && data ? data.appartmentaddres : ""}</p> */}
             </div>
             <Row className='m-0'>
-                <Col md='4' className='d-flex'>
+                <Col md='3' className='d-flex'>
                     {/* slider area */}
                     {/* <div className="detail-slide">
                     <UncontrolledCarousel items={items} />
@@ -111,7 +111,7 @@ const PropertyDetail = () => {
                 <Col md='8'>
                     <div className='single-property-detail-div'>
                         <h5>House, Rented</h5>
-                        <h5>House no 45, Street 45, E11/4</h5>
+                        <h5>House no 45, Street 45, E-11/4</h5>
                         <h5>Bed Rooms: 4</h5>
                         <h5>Bath Rooms: 2</h5>
                         {/* <h5>Occupancy: 1%</h5> */}

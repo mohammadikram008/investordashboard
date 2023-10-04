@@ -1,33 +1,36 @@
 /* styles.css */
-.property-table{
-    width: 100%;
-    color: #CA974B;
-    /* border: 1px solid ; */
-    /* border-radius: 10px; */
-    margin-top: 10px;
+.property-table {
+  width: 100%;
+  color: #CA974B;
+  /* border: 1px solid ; */
+  /* border-radius: 10px; */
+  margin-top: 10px;
 
-    /* padding: 10px; */
+  /* padding: 10px; */
 }
-.property-table tr{
+
+.property-table tr {
   color: black;
 }
-.property-table thead tr{
+
+.property-table thead tr {
   color: #CA974B;
 }
+
 .property-list {
-    /* max-width: 800px; */
-    width: 100%;
-    margin: 0 auto;
-    padding: 20px;
+  /* max-width: 800px; */
+  width: 100%;
+  margin: 0 auto;
+  padding: 20px;
 }
 
 .property-items {
-    list-style-type: none;
-    padding: 0;
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: column;
-    /* justify-content: space-between; */
+  list-style-type: none;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  /* justify-content: space-between; */
 }
 
 /* .property-items li {
@@ -36,8 +39,8 @@
     
   } */
 .property-list-detail {
-    display: flex;
-    width: 100%;
+  display: flex;
+  width: 100%;
 }
 
 
@@ -47,31 +50,43 @@
     height: auto;
 } */
 .pagination {
-    display: flex;
-    justify-content: end;
-    list-style: none;
-    margin-top: 10px;
-    padding: 0;
-  }
-  
-  .pagination li {
-    margin: 0 5px;
-    font-size: 18px;
-    cursor: pointer;
-  }
-  
-  .pagination .active {
-    font-weight: bold;
-  }
-  .searchbar{
-    display: flex;
-    justify-content: end;
-    align-items: center;
-  }
-  .searchbar input{
-  
-    border: 1px solid #DF9976;
-    border-radius: 10px;
-    padding: .3rem;
-    
-  }
+  display: flex;
+  justify-content: end;
+  list-style: none;
+  margin-top: 10px;
+  padding: 0;
+}
+
+.pagination li {
+  margin: 0 5px;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.pagination .active {
+  font-weight: bold;
+}
+
+.searchbar {
+  display: flex;
+  justify-content: end;
+  align-items: center;
+}
+
+.searchbar input {
+
+  border: 1px solid #DF9976;
+  border-radius: 10px;
+  padding: .3rem;
+
+}
+
+.input-class {
+  max-width: 20%;
+  margin: 1rem;
+}
+.pagination {
+  display: flex;
+justify-content: start;
+/* align-items: start; */
+}

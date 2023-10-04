@@ -3,8 +3,6 @@
     border-top-left-radius: 20px;
     background-color: rgb(230, 229, 229);
     width: 300px;
-  
-    
     /* width: 30%; */
     /* height: 20%; */
 }
@@ -12,9 +10,8 @@
     transform: scale(1.1);
 }
 .img-responsive{
-
     width: 300px;
-    border-top-right-radius:20px ;
+    border-top-right-radius:20px;
     border-top-left-radius: 20px;
 }
 .fh5co-property-innter{
@@ -42,7 +39,6 @@
   }
 .custom-carousel .carousel-indicators li {
     /* Customize the size of the dots */
-    
     border-top-right-radius: 10px;
     border-top-left-radius: 10px;
     /* margin-right: 5px; */

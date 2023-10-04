@@ -1,4 +1,4 @@
-import React,{ Fragment,useState }  from 'react'
+import React, { Fragment, useState } from 'react'
 import { Col, Row } from 'reactstrap'
 import pro3 from '../../../assets/images/pro3.jpg'
 import { Link, useNavigate } from 'react-router-dom';
@@ -13,55 +13,74 @@ const Properties = () => {
     const datas = Array.from({ length: 100 }, (_, index) => `Item ${index + 1}`);
     const propertyData = [
         {
-          id: 1,
-          propertyName: 'Property 1',
-          propertyLocation: 'Location 1',
-          propertyPrice: 100000,
-          propertyDescription: 'Description for Property 1',
-          image: 'https://azizidevelopments.com/assets/images/projects/1603263070389162780.jpg',
-        },
-        {
-          id: 2,
-          propertyName: 'Property 2',
-          propertyLocation: 'Location 2',
-          propertyPrice: 1067000,
-          propertyDescription: 'Description for Property 2',
-          image: 'https://azizidevelopments.com/assets/images/projects/15795279721750900140.jpg',
+            id: 1,
+            Name: 'House E-11/4',
+            Address: 'House no 45, Street 45, E-11/4',
+            City: 'Islamabad',
+            Country: 'Pakistan',
+            Type: 'FLat',
+            Price: "$ 6575",
+            // propertyDescription: 'Description for Property 1',
+            // image: 'https://azizidevelopments.com/assets/images/projects/1603263070389162780.jpg',
         },
         {
             id: 2,
-            propertyName: 'Property 3',
-            propertyLocation: 'Location 3',
-            propertyPrice: 150000,
-            propertyDescription: 'Description for Property 3',
-            image: 'https://azizidevelopments.com/assets/images/projects/1624972383238283745.jpg',
-          },
-          {
+            Name: 'Appartment DHA/2',
+            Address: 'Appartment no 65, Street 1, DHA/2',
+            City: 'Lahore',
+            Country: 'Pakistan',
+            Type: 'Appartment',
+            Price: "$ 1598",
+            // propertyDescription: 'Description for Property 2',
+            // image: 'https://azizidevelopments.com/assets/images/projects/15795279721750900140.jpg',
+        },
+        {
+            id: 3,
+            Name: 'House 4',
+            Address: 'House no 4, Street 7, Peshawar ',
+            City: 'Peshawar',
+            Country: 'Pakistan',
+            Type: 'Home',
+            Price: '$ 1500',
+            // propertyDescription: 'Description for Property 2',
+            // image: 'https://azizidevelopments.com/assets/images/projects/1624972383238283745.jpg',
+        },
+        {
             id: 4,
-            propertyName: 'Property 4',
-            propertyLocation: 'Location 4',
-            propertyPrice: 170000,
-            propertyDescription: 'Description for Property 4',
-            image: 'image_url_2',
-          },
-          {
+            Name: 'House DHA',
+            Address: 'House no 5, Street 2, DHA',
+            City: 'Lahore',
+            Country: 'Pakistan',
+            Type: 'House',
+            Price: "$ 1595",
+            // propertyDescription: 'Description for Property 1',
+            // image: 'https://azizidevelopments.com/assets/images/projects/1603263070389162780.jpg',
+        },
+        {
             id: 5,
-            propertyName: 'Property 5',
-            propertyLocation: 'Location 5',
-            propertyPrice: 220000,
-            propertyDescription: 'Description for Property 5',
-            image: 'image_url_2',
-          },
-          {
+            Name: 'House BlueArea',
+            Address: 'House no 65, Street 1, BlueArea',
+            City: 'Islamabad',
+            Country: 'Pakistan',
+            Type: 'House',
+            Price: "$ 15989",
+            // propertyDescription: 'Description for Property 2',
+            // image: 'https://azizidevelopments.com/assets/images/projects/15795279721750900140.jpg',
+        },
+        {
             id: 6,
-            propertyName: 'Property 6',
-            propertyLocation: 'Location 6',
-            propertyPrice: 1488000,
-            propertyDescription: 'Description for Property 6',
-            image: 'image_url_2',
-          },
+            Name: 'Apparment F-7',
+            Address: 'Apparment no 67, Street 4, F-7',
+            City: 'Islamabad',
+            Country: 'Pakistan',
+            Type: 'Apparment',
+            Price: '$ 78901',
+            // propertyDescription: 'Description for Property 2',
+            // image: 'https://azizidevelopments.com/assets/images/projects/1624972383238283745.jpg',
+        },
+
         // Add more properties as needed
-      ];
+    ];
     const navigate = useNavigate();
     const handleNavigation = (prop) => {
 
@@ -108,28 +127,24 @@ const Properties = () => {
 
         }
     ];
-    
-   
+
+
     return (
         <Fragment>
             <div className='property-heading'>
-
                 <h1>Properties</h1>
                 {/* <div className='searchbar'>
                     <label>Search by Symbol:</label>
                     <input type="text" placeholder='Search by Location' onChange={handleSearch} />
                 </div> */}
             </div>
-
             <Row className='m-0'>
                 <Col md='12'>
                     {/* <div className="mian-proprty-div" data-animate-effect="fadeIn">
                         <div className="fh5co-property" >
-                            
                             <div className="custom-carousel">
                                 <UncontrolledCarousel  {...settings} items={items} />
-                            </div>
-                        
+                            </div>                       
                             <div className="fh5co-property-innter">
                             <span className="rented">Islamabad</span><span className="rented">Rented</span>
                                 <div className='contain-div' onClick={() => handleNavigation()}>
@@ -142,14 +157,10 @@ const Properties = () => {
                                     </p>
                                     <p>CLick for more details....</p>
                                 </div>
-
                             </div>
                         </div>
                     </div> */}
-                    
-                       
-                        <Pagination itemsPerPage={5} properties={propertyData} />
-                    
+                    <Pagination itemsPerPage={5} properties={propertyData} />
                 </Col>
             </Row>
         </Fragment>
