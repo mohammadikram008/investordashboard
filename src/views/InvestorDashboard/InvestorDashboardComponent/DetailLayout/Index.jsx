@@ -4,13 +4,14 @@ import { Row, Col, Table } from 'reactstrap'
 const Index = () => {
     return (
         <Fragment>
-            <Row className='m-0 border p-3'>
+            <Row className='m-0 border p-3 mt-5'>
                 <Col md='12' className='detail-class-col'>
-                    <Table>
+                    <Table  >
+                        <thead></thead>
                         <tbody>
                             <tr>
                                 <td>Property Price:</td>
-                                <td>$ 478</td>
+                                <td>PKR 478</td>
                             </tr>
                             <tr>
                                 <td>Area:</td>
@@ -18,7 +19,7 @@ const Index = () => {
                             </tr>
                             <tr>
                                 <td>Price/sqft:</td>
-                                <td>$ 75</td>
+                                <td>PKR 75</td>
                             </tr>
                             <tr>
                                 <td>Property Type:</td>
@@ -53,9 +54,9 @@ const Index = () => {
                 </Col>
                 {/* <Col md='4'>
                     <div>
-                    <h5>$ 478</h5>
+                    <h5>PKR 478</h5>
                         <h5>2894 sqft</h5>
-                        <h5>$75</h5>
+                        <h5>PKR75</h5>
                         <h5>Flat</h5>
                         <h5>4</h5>
                         <h5> 2</h5>

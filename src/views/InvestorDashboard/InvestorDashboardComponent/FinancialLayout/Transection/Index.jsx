@@ -1,28 +1,25 @@
-import React, { Fragment, useState } from 'react';
+import React, { Fragment, useState, useEffect } from 'react';
 import { Col, Row } from 'reactstrap'
-import { Table } from 'reactstrap';
 import jsPDF from 'jspdf';
 import 'jspdf-autotable';
-import ReactPaginate from 'react-paginate';
+import {
+  Table,
+  Input,
+  FormGroup,
+  Label,
+  Pagination,
+  PaginationItem,
+  PaginationLink,
+  Button,
+} from "reactstrap";
+import ReactPaginate from "react-js-pagination";
+
+
 const Index = () => {
-  const generatePdf = () => {
-    const doc = new jsPDF();
 
-    doc.autoTable({
-      head: [['Date', 'Amount', 'Account', 'Comments', 'Balance']],
-      body: paginatedData.map((item) => [
-        item.date,
-        item.amount.toString(),
-        item.account,
-        item.comments,
-        item.balance.toString(),
-      ]),
-    });
-
-    doc.save('InfeetReport.pdf');
-  };
-  const data = [
+  const transactions = [
     {
+      id: 1,
       date: '2023-09-01',
       amount: 100.0,
       account: 'Savings',
@@ -30,6 +27,7 @@ const Index = () => {
       balance: 100.0,
     },
     {
+      id: 2,
       date: '2023-09-02',
       amount: -50.0,
       account: 'Checking',
@@ -37,6 +35,7 @@ const Index = () => {
       balance: 50.0,
     },
     {
+      id: 3,
       date: '2023-09-03',
       amount: 75.0,
       account: 'Savings',
@@ -44,6 +43,7 @@ const Index = () => {
       balance: 125.0,
     },
     {
+      id: 4,
       date: '2023-09-04',
       amount: -30.0,
       account: 'Checking',
@@ -51,6 +51,7 @@ const Index = () => {
       balance: 95.0,
     },
     {
+      id: 5,
       date: '2023-09-05',
       amount: 60.0,
       account: 'Savings',
@@ -58,6 +59,7 @@ const Index = () => {
       balance: 155.0,
     },
     {
+      id: 6,
       date: '2023-09-06',
       amount: -25.0,
       account: 'Checking',
@@ -65,6 +67,7 @@ const Index = () => {
       balance: 130.0,
     },
     {
+      id: 7,
       date: '2023-09-07',
       amount: 90.0,
       account: 'Savings',
@@ -72,6 +75,7 @@ const Index = () => {
       balance: 220.0,
     },
     {
+      id: 8,
       date: '2023-09-08',
       amount: -45.0,
       account: 'Checking',
@@ -79,6 +83,7 @@ const Index = () => {
       balance: 175.0,
     },
     {
+      id: 9,
       date: '2023-09-09',
       amount: 120.0,
       account: 'Savings',
@@ -86,6 +91,7 @@ const Index = () => {
       balance: 295.0,
     },
     {
+      id: 10,
       date: '2023-09-10',
       amount: -20.0,
       account: 'Checking',
@@ -93,95 +99,73 @@ const Index = () => {
       balance: 275.0,
     },
   ];
-  const [fromDate, setFromDate] = useState('');
-  const [toDate, setToDate] = useState('');
+  const pageSize = 5; // Number of items per page
   const [currentPage, setCurrentPage] = useState(0);
-  const itemsPerPage = 5;
+  const [startDate, setStartDate] = useState("");
+  const [endDate, setEndDate] = useState("");
+  const [filteredTransactions, setFilteredTransactions] = useState([]);
 
-  const handleFromDateChange = (event) => {
-    setFromDate(event.target.value);
-    setCurrentPage(0);
+  const handlePageClick = (pageIndex) => {
+    setCurrentPage(pageIndex);
   };
 
-  const handleToDateChange = (event) => {
-    setToDate(event.target.value);
-    setCurrentPage(0);
-  };
+  const filterTransactions = () => {
+    let filtered = transactions;
 
-  const filteredData = data.filter((item) => {
-    if (fromDate && toDate) {
-      const itemDate = new Date(item.date);
-      const fromDateObj = new Date(fromDate);
-      const toDateObj = new Date(toDate);
-
-      return itemDate >= fromDateObj && itemDate <= toDateObj;
+    if (startDate && endDate) {
+      // Filter transactions based on the date range
+      filtered = filtered.filter((transaction) => {
+        const transactionDate = new Date(transaction.date);
+        const start = new Date(startDate);
+        const end = new Date(endDate);
+        return transactionDate >= start && transactionDate <= end;
+      });
     }
-    return true;
-  });
 
-  const offset = currentPage * itemsPerPage;
-  const pageCount = Math.ceil(filteredData.length / itemsPerPage);
-  const paginatedData = filteredData.slice(offset, offset + itemsPerPage);
+    return filtered;
+  };
 
-  const handlePageClick = ({ selected }) => {
-    setCurrentPage(selected);
+  const renderTransactions = () => {
+    const filteredTransactions = filterTransactions();
+    const startIndex = currentPage * pageSize;
+    const endIndex = startIndex + pageSize;
+
+    return filteredTransactions.slice(startIndex, endIndex).map((transaction) => (
+      <tr key={transaction.id}>
+        <td>{transaction.id}</td>
+        <td>{transaction.date}</td>
+        <td>{transaction.amount}</td>
+        <td>{transaction.account}</td>
+        <td>{transaction.comments}</td>
+        <td>{transaction.balance}</td>
+      </tr>
+    ));
   };
 
   return (
     <Fragment>
-      {/* <div className='searchbar'>
-                <input type="text" placeholder='Search here' value={selectedDate}
-                    onChange={handleDateChange} />
-            </div> */}
-      {/* <Row className='m-0 mt-5 mb-5 transection-mian-row'>
-                <Col md='2' sm='12' className='col-border-rgt'>
-                    <div className='col-heading'><p>Date</p></div>
-                    <div className='col-detail'>
-                        <span>12/5/2023</span>
-                    </div>
-                </Col>
-                <Col md='2' sm='12' className='col-border-rgt'>
-                    <div className='col-heading'><p>Amount</p></div>
-                    <div className='col-detail'>
-                        <p>1300</p>
-                    </div>
-                </Col>
-                <Col md='2' sm='12' className='col-border-rgt'>
-                    <div className='col-heading'><p>Account</p></div>
-                    <div className='col-detail'>
-                        <p>1252023</p>
-                    </div>
-                </Col>
-                <Col md='2' sm='12' className='col-border-rgt'>
-                    <div className='col-heading'><p>Comments</p></div>
-                    <div className='col-detail'>
-                        <p>i am owner</p>
-                    </div>
-                </Col>
-                <Col md='2' sm='12' className='col-border-rgt'>
-                    <div className='col-heading'><p>Recived</p></div>
-                    <div className='col-detail'>
-                        <p>1252023</p>
-                    </div>
-                </Col>
-                <Col md='2' sm='12' className='col-border-rgt'>
-                    <div className='col-heading'><p>Balance</p></div>
-                    <div className='col-detail'>
-                        <p>12500,9</p>
-                    </div>
-                </Col>
-            </Row> */}
-      {/* <button className='btn-transection mb-4' onClick={generatePdf}>Generate Reports</button> */}
       <div className='date-div'>
-        <label htmlFor="fromDate">From Date:</label>
-        <input type="date" id="fromD
-        
-        
-        ate" value={fromDate} onChange={handleFromDateChange} />
-        <label htmlFor="toDate" id="fromDate">To Date:</label>
-        <input type="date" id="toDate" value={toDate} onChange={handleToDateChange} />
+        <FormGroup className='date-form mt-3'>
+          <Label for="startDate">From :</Label>
+          <Input
+            type="date"
+            id="startDate"
+            value={startDate}
+            onChange={(e) => setStartDate(e.target.value)}
+          />
+        </FormGroup>
+        <FormGroup className='date-form mt-3'>
+          <Label  for="endDate" className='lb' >To :</Label>
+          <Input
+            type="date"
+            id="endDate"
+            value={endDate}
+            onChange={(e) => setEndDate(e.target.value)}
+          />
+        </FormGroup>
+        {/* <button className='btn-transection btn-filter ' onClick={() => handleFilterClick()}>Filter</button> */}
       </div>
-      <Table bordered hover responsive>
+      <Table hover responsive >
         <thead>
           <tr>
             <th>#</th>
@@ -192,70 +176,21 @@ const Index = () => {
             <th>Balance</th>
           </tr>
         </thead>
-        {/* <tbody>
-          <tr>
-            <th scope="row">1</th>
-            <td>12/5/2023</td>
-            <td>$ 3456</td>
-            <td>self</td>
-            <td>Rented</td>
-            <td>$ 5677</td>
-          </tr>
-          <tr>
-            <th scope="row">2</th>
-         
-            <td>1/7/2023</td>
-            <td>$ 7656</td>
-            <td>self</td>
-            <td>Sale</td>
-            <td>$ 8877</td>
-          </tr>
-          <tr>
-            <th scope="row">3</th>
-         
-            <td>6/9/2023</td>
-            <td>$ 21234</td>
-            <td>self</td>
-            <td>Rented</td>
-            <td>$ 1897</td>
-          </tr>
-        </tbody> */}
-        <tbody>
-          {paginatedData.map((item, index) => (
-            <tr key={index}>
-              <td>{index}</td>
-              <td>{item.date}</td>
-              <td>{item.amount}</td>
-              <td>{item.account}</td>
-              <td>{item.comments}</td>
-              <td>{item.balance}</td>
-            </tr>
-          ))}
-        </tbody>
+        <tbody>{renderTransactions()}</tbody>
       </Table>
-      {/* <ReactPaginate
-        pageCount={pageCount}
-        pageRangeDisplayed={3}
-        marginPagesDisplayed={2}
-        previousLabel={'<'}
-        nextLabel={'>'}
-        breakLabel={'...'}
-        onPageChange={handlePageClick}
-        containerClassName={'pagination'}
-        activeClassName={'active'}
-      /> */}
-
-      <ReactPaginate
-        pageCount={pageCount}
-        pageRangeDisplayed={5}
-        marginPagesDisplayed={2}
-        previousLabel={'<'}
-        nextLabel={'>'}
-        breakLabel={'...'}
-        onPageChange={handlePageClick}
-        containerClassName={'pagination'}
-        activeClassName={'active'}
-      />
+      <Pagination>
+        <PaginationItem disabled={currentPage === 0}>
+          <PaginationLink previous onClick={() => handlePageClick(currentPage - 1)} />
+        </PaginationItem>
+        {[...Array(Math.ceil(filterTransactions().length / pageSize))].map((_, index) => (
+          <PaginationItem key={index} active={index === currentPage}>
+            <PaginationLink onClick={() => handlePageClick(index)}>{index + 1}</PaginationLink>
+          </PaginationItem>
+        ))}
+        <PaginationItem disabled={currentPage === Math.ceil(filterTransactions().length / pageSize) - 1}>
+          <PaginationLink next onClick={() => handlePageClick(currentPage + 1)} />
+        </PaginationItem>
+      </Pagination>
     </Fragment>
   )
 }

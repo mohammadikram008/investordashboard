@@ -4,9 +4,10 @@ import { Col, Row } from 'reactstrap'
 import '../../../CSS/InvestorDashBoard.css'
 import pro3 from '../../../assets/images/pro3.jpg'
 import InvestorDashBoard from '../../InvestorDashboard/Index'
-import ImageGallery from '../../ImageGallary/Index'
+// import ImageGallery from '../../ImageGallary/Index'
 import Modal from 'react-modal';
-
+import ImageGallery from "react-image-gallery";
+import "react-image-gallery/styles/css/image-gallery.css";
 //slider 
 import { UncontrolledCarousel } from 'reactstrap';
 const PropertyDetail = () => {
@@ -25,11 +26,25 @@ const PropertyDetail = () => {
 
     const [Image, setImage] = useState(false);
     const images = [
-        'https://azizidevelopments.com/assets/images/projects/15795279721750900140.jpg',
-        'https://azizidevelopments.com/assets/images/projects/1624972383238283745.jpg',
-        'image3.jpg',
-        // Add more image URLs as needed
-    ];
+        {
+          original: "https://picsum.photos/id/1018/1000/600/",
+          thumbnail: "https://picsum.photos/id/1018/250/150/",
+        },
+        {
+          original: "https://picsum.photos/id/1015/1000/600/",
+          thumbnail: "https://picsum.photos/id/1015/250/150/",
+        },
+        {
+          original: "https://picsum.photos/id/1019/1000/600/",
+          thumbnail: "https://picsum.photos/id/1019/250/150/",
+        },
+      ];
+    // const images = [
+    //     'https://azizidevelopments.com/assets/images/projects/15795279721750900140.jpg',
+    //     'https://azizidevelopments.com/assets/images/projects/1624972383238283745.jpg',
+    //     'image3.jpg',
+        
+    // ];
     const items = [
         {
             src: `https://azizidevelopments.com/assets/images/projects/15795279721750900140.jpg`,
@@ -79,7 +94,8 @@ const PropertyDetail = () => {
                         </button>
                         {selectedImage && (
                             <div className="modal-image">
-                                <UncontrolledCarousel items={items} />
+                                <ImageGallery items={images} />
+                                {/* <UncontrolledCarousel items={items} /> */}
                             </div>
                             // <img
                             //     src={selectedImage}

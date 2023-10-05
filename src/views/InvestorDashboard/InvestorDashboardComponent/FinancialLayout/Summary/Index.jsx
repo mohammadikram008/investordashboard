@@ -22,12 +22,12 @@ const Index = () => {
               </tr>
               <tr>
                 <td>Monthly Rental:</td>
-                <td>$ 56</td>
+                <td>PKR 56</td>
               </tr>
 
               <tr>
                 <td>Cash in Reserve:</td>
-                <td>$ 675</td>
+                <td>PKR 675</td>
               </tr>
               <tr>
                 <td>Payment Ratio:</td>

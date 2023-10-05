@@ -12,14 +12,14 @@ setName(props);
     }
   return (
     <Fragment>
-    <Row className='m-0'>
+    <Row className='m-0 '>
         <Col md='12' className='btn-col'>
             <button className='btn-transection'  onClick={()=>handdleChange("Summary")}>Summary</button>
             <button className='btn-transection'  onClick={()=>handdleChange("Transection")}>Transactions</button>
             <button className='btn-transection'  onClick={()=>handdleChange("Report")}>Reports</button>
         </Col>
-        <Col md='12 mt-4'>
-          {name==="Summary"?<Summary/>:name==="Transection"?<Transection/>:<Report/>}
+        <Col md='12 mt-4 ' className='detail-main-col'>
+          {name==="Report"?<Report/>:name==="Transection"?<Transection/>:<Summary/>}
         </Col>
     </Row>
 </Fragment>

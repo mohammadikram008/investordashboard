@@ -1,4 +1,4 @@
-.btn-col{
+.btn-col {
     display: flex;
     color: #CA974B;
     justify-content: space-around;
@@ -7,38 +7,72 @@
     /* border-bottom: 1px solid #CA974B; */
 
 }
-.btn-transection{
+
+.btn-transection {
     color: #CA974B;
-    border: 1px solid #CA974B ;
+    border: 1px solid #CA974B;
     border-radius: 2px;
     padding: 5px;
     /* background: cyan; */
 }
-.btn-transection:hover{
+
+.btn-transection:hover {
     /* background-color: aquamarine; */
     /* transform: scale(1.2); */
     /* background: cyan; */
     border-color: #998972;
-    color:#998972 ;
+    color: #998972;
 }
 
-.date-div{
-background-color: #998972;
-padding: 0.5rem;
-color: white;
+.date-div {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    background-color: #998972;
+    /* padding: 0.5rem; */
+    margin-bottom: 0px;
+    color: white;
 }
-#fromDate,#toDate{
+
+.date-div label {
+    width: 30%;
+}
+
+.date-div .lb {
+    width: 18%;
+}
+
+.date-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30%;
+    margin-bottom: 0px;
     margin-left: 1rem;
 }
-.reports-headings:hover{
+.btn-filter{
+    width: 10%;
+    height: 5%;
+    margin-left: 2rem ;
+}
+
+.reports-headings{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+   max-width: 15rem;
+}
+.reports-headings:hover {
     color: #CA974B;
     cursor: pointer;
 
 }
-.report-date-div{
+
+.report-date-div {
     margin-top: 1rem;
 }
-.report-date-div h4  { 
+
+.report-date-div h5 {
     display: flex;
     justify-content: center;
     align-items: center;

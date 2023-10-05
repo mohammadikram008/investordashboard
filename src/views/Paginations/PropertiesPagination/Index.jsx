@@ -6,63 +6,86 @@ import ReactPaginate from 'react-paginate';
 import Select from "react-select";
 import {
   Table,
-  Pagination,
-  PaginationItem,
-  PaginationLink,
+  Button,
+  Collapse,
   Input,
   FormGroup,
   Label,
+  Dropdown,
+  DropdownToggle,
+  DropdownMenu,
+  DropdownItem,
+  Pagination,
+  PaginationItem,
+  PaginationLink,
 } from "reactstrap";
+import { BiFilterAlt } from 'react-icons/bi';
 const Index = ({ properties, itemsp }) => {
-  console.log("properties",properties)
+  console.log("properties", properties)
   const navigate = useNavigate();
- 
-  const pageSize = 5; // Number of items per page
+  const pageSize = 5;
   const [currentPage, setCurrentPage] = useState(0);
-  const [filter, setFilter] = useState("");
-  const [selectedFilter, setSelectedFilter] = useState(null);
+  const [isOpen, setIsOpen] = useState(false);
+  const [filterCity, setFilterCity] = useState("");
+  const [filterPrice, setFilterPrice] = useState("");
+  const [filterPropertyType, setFilterPropertyType] = useState("");
+  const [dropdownOpen, setDropdownOpen] = useState(false);
 
-  const pageCount = Math.ceil(properties.length / pageSize);
-  const filteredProperties = properties.filter((property) => {
-    if (!filter) return true;
-    switch (selectedFilter.value) {
-      case "Name":
-        return property.Name.toLowerCase().includes(filter.toLowerCase());
-      case "Address":
-        return property.Address.toLowerCase().includes(filter.toLowerCase());
-      case "City":
-        return property.City.toLowerCase().includes(filter.toLowerCase());
-      case "Country":
-        return property.Country.toLowerCase().includes(filter.toLowerCase());
-      default:
-        return true;
+  const toggle = () => {
+    setIsOpen(!isOpen);
+  };
+
+  const toggleDropdown = () => {
+    setDropdownOpen(!dropdownOpen);
+  };
+
+  const handlePageClick = (pageIndex) => {
+    setCurrentPage(pageIndex);
+  };
+
+  const filterProperties = () => {
+    let filtered = properties;
+
+    if (filterCity) {
+      filtered = filtered.filter((property) =>
+        property.city.toLowerCase() === filterCity.toLowerCase()
+      );
     }
-  });
 
-  const handlePageClick = (selected) => {
-    setCurrentPage(selected.selected);
-  };
+    if (filterPrice) {
+      const [minPrice, maxPrice] = filterPrice.split("-").map((price) => parseInt(price, 10));
+      filtered = filtered.filter(
+        (property) => {
+          const propertyPrice = parseInt(property.price.replace(/[^0-9]/g, ""), 10);
+          return propertyPrice >= minPrice && propertyPrice <= maxPrice;
+        }
+      );
+    }
 
-  const handleFilterChange = (event) => {
-    setFilter(event.target.value);
-  };
+    if (filterPropertyType) {
+      filtered = filtered.filter(
+        (property) =>
+          property.type.toLowerCase() === filterPropertyType.toLowerCase()
+      );
+    }
 
-  const handleFilterSelectChange = (selectedOption) => {
-    setSelectedFilter(selectedOption);
+    return filtered;
   };
 
   const renderProperties = () => {
+    const filteredProperties = filterProperties();
     const startIndex = currentPage * pageSize;
     const endIndex = startIndex + pageSize;
 
     return filteredProperties.slice(startIndex, endIndex).map((property) => (
       <tr key={property.id} onClick={()=>handleNavigation()}>
-          <td>{property.id}</td>
-        <td>{property.Name}</td>
-        <td>{property.Address}</td>
-        <td>{property.City}</td>
-        <td>{property.Country}</td>
-        <td>{property.Price}</td>
+        <td>{property.id}</td>
+        <td>{property.name}</td>
+        <td>{property.address}</td>
+        <td>{property.city}</td>
+        <td>{property.country}</td>
+        <td>{property.type}</td>
+        <td>{property.price}</td>
       </tr>
     ));
   };
@@ -97,69 +120,72 @@ const Index = ({ properties, itemsp }) => {
 
   return (
     <Fragment>
-      <div className='searchbar'>
-      <Select
-          id="filter"
-          options={[
-            { value: "Name", label: "Name" },
-            { value: "Address", label: "Address" },
-            { value: "City", label: "City" },
-            { value: "Country", label: "Country" },
-          ]}
-          value={selectedFilter}
-          onChange={handleFilterSelectChange}
-          isClearable
-        />
-         <Input
-        type="text"
-        placeholder="Filter..."
-        value={filter}
-        className='input-class'
-        onChange={handleFilterChange}
-      /> </div>
-      {/* <select value={searchType} onChange={handleSearchTypeChange}>
-          <option value="location">Location</option>
-          <option value="name">Property Name</option>
-        </select> */}
-      {/* <Table bordered hover responsive className='mt-4'>
-        <thead >
-          <tr>
-            <th>#</th>
-            <th>Property Name</th>
-            <th> Address</th>
-            <th> City</th>
-            <th> Country</th>
-            <th> Property Type</th>
-            <th> Price</th>
-          </tr>
-        </thead>
-        <tbody >
-          {paginatedProperties.map((property, index) => (
-            <tr key={index} className='border ' onClick={() => navigate('/property/propertydetail')}>
-              <th scope="row">{property.id}</th>
-              <td>
-                {property.propertyName}</td>
-              <td>{property.propertyAddress}</td>
-              <td>{property.propertyCity}</td>
-              <td>{property.propertyCountry}</td>
-              <td>{property.propertyType}</td>
-              <td>{property.propertyPrice}</td>
-            </tr>
-          ))}
-        </tbody>
-      </Table>
-      <ReactPaginate
-        pageCount={pageCount}
-        pageRangeDisplayed={3}
-        marginPagesDisplayed={2}
-        previousLabel={'<'}
-        nextLabel={'>'}
-        breakLabel={'...'}
-        onPageChange={handlePageClick}
-        containerClassName={'pagination'}
-        activeClassName={'active'}
-      /> */}
-          <Table bordered hover responsive className='mt-4'>
+      <div className='filter-div'> 
+
+        <BiFilterAlt size={24} onClick={toggle} style={{ cursor: "pointer" }} />
+      </div>
+      {/* <Button color="primary" onClick={toggle}>
+        Filter
+      </Button> */}
+      <Collapse isOpen={isOpen} className='collapse-div'>
+        <FormGroup className='collapse-div-groupform'>
+          <Label for="filterCity">City:</Label>
+          <Dropdown isOpen={dropdownOpen} toggle={toggleDropdown}>
+            <DropdownToggle caret>
+              {filterCity || "Select City"}
+            </DropdownToggle>
+            <DropdownMenu>
+              <DropdownItem onClick={() => setFilterCity("")}>
+                All
+              </DropdownItem>
+              <DropdownItem onClick={() => setFilterCity("Karachi")}>
+                Karachi
+              </DropdownItem>
+              <DropdownItem onClick={() => setFilterCity("Lahore")}>
+                Lahore
+              </DropdownItem>
+              <DropdownItem onClick={() => setFilterCity("Islamabad")}>
+                Islamabad
+              </DropdownItem>
+              <DropdownItem onClick={() => setFilterCity("Peshawar")}>
+                Peshawar
+              </DropdownItem>
+              {/* Add more cities as needed */}
+            </DropdownMenu>
+          </Dropdown>
+        </FormGroup>
+        <FormGroup  className='collapse-div-groupform'>
+          <Label for="filterPrice">Price:</Label>
+          <Input
+            type="select"
+            id="filterPrice"
+            value={filterPrice}
+            onChange={(e) => setFilterPrice(e.target.value)}
+          >
+            <option value="">Select Price Range in PKR</option>
+            <option value="1000-10000">1,000 - 10,000</option>
+            <option value="10000-50000">10,000 - 50,000</option>
+            <option value="50000-100000">50,000 - 100,000</option>
+          </Input>
+        </FormGroup>
+        <FormGroup className='collapse-div-groupform'>
+          <Label for="filterPropertyType">Property Type:</Label>
+          <Input
+            type="select"
+            id="filterPropertyType"
+            value={filterPropertyType}
+            onChange={(e) => setFilterPropertyType(e.target.value)}
+          >
+            <option value="">Select Property Type</option>
+            <option value="Flat">Flat</option>
+            <option value="Apartment">Apartment</option>
+            <option value="Home">Home</option>
+            <option value="House">House</option>
+            {/* Add more property types as needed */}
+          </Input>
+        </FormGroup>
+      </Collapse>
+      <Table hover  className='table-body'>
         <thead>
           <tr>
             <th>#</th>
@@ -167,21 +193,36 @@ const Index = ({ properties, itemsp }) => {
             <th>Address</th>
             <th>City</th>
             <th>Country</th>
-            <th>price</th>
+            <th>Property Type</th>
+            <th>Price</th>
           </tr>
         </thead>
-        <tbody>{renderProperties()}</tbody>
+        <tbody >{renderProperties()}</tbody>
       </Table>
       <Pagination>
-        {Array.from({ length: pageCount }).map((_, index) => (
-          <PaginationItem key={index}  active={index === currentPage}>
-            <PaginationLink onClick={() => setCurrentPage(index)}>
+        <PaginationItem disabled={currentPage === 0}>
+          <PaginationLink previous onClick={() => handlePageClick(currentPage - 1)} />
+        </PaginationItem>
+        {Array.from({ length: Math.ceil(filterProperties().length / pageSize) }).map((_, index) => (
+          <PaginationItem key={index} active={index === currentPage}>
+            <PaginationLink onClick={() => handlePageClick(index)}>
               {index + 1}
             </PaginationLink>
           </PaginationItem>
         ))}
+        <PaginationItem disabled={currentPage === Math.ceil(filterProperties().length / pageSize) - 1}>
+          <PaginationLink next onClick={() => handlePageClick(currentPage + 1)} />
+        </PaginationItem>
       </Pagination>
-    
+      {/* <Pagination>
+        {Array.from({ length: Math.ceil(filterProperties().length / pageSize) }).map((_, index) => (
+          <PaginationItem key={index} active={index === currentPage}>
+            <PaginationLink onClick={() => handlePageClick(index)}>
+              {index + 1}
+            </PaginationLink>
+          </PaginationItem>
+        ))}
+      </Pagination> */}
 
     </Fragment>
   )

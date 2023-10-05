@@ -50,9 +50,9 @@ const Index = () => {
                         </div>
 
                     </Col>
-                    <Col md='10 m-2'>
+                    <Col md='10 m-2' className='detail-main-col' >
 
-                        {loadfram === "Details" ? <Details /> : <Financial />}
+                        {loadfram === "Financial" ?   <Financial />:<Details />}
 
 
 

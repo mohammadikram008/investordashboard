@@ -90,3 +90,22 @@
 justify-content: start;
 /* align-items: start; */
 }
+.filter-div{
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+.collapse-div{
+  background-color: #998972;
+  display: flex;
+  color:white;
+}
+.collapse-div-groupform{
+  
+  padding: 1rem;
+  margin-left: 2rem;
+}
+.table-body{
+  height: 20rem !important;
+}
