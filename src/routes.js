@@ -4,7 +4,12 @@ const Properties = React.lazy(() => import('./views/explore/propertyhome/Propert
 const OwnerAcess = React.lazy(() => import('./views/explore/ownerpropertydertail/OwnerProperty'))
 const SingleProperty = React.lazy(() => import('./views/explore/propertydetail/PropertyDetail'))
 const Portfolio = React.lazy(() => import('./views/portfolio/Portfolio'))
+const Profile =React.lazy(() => import('./views/Settings/Profile/Index'))
+const PrivacySettings =React.lazy(() => import('./views/Settings/Privacy Settings/Index'))
 
+const Login=React.lazy(() => import('./views/pages/login/Login'))
+
+const Register =React.lazy(() => import('./views/pages/register/Register'))
 
 const Dashboard = React.lazy(() => import('./views/dashboard/Dashboard'))
 const Wallet = React.lazy(() => import('./views/wallet/Wallet'))
@@ -66,7 +71,11 @@ const routes = [
   { path: '/explore', name: 'Properties', element: Properties },
   { path: '/explore/OwnerAcess', name: 'OwnerAcces', element: OwnerAcess },
   { path: '/explore/propertydetail', name: 'Property Details', element: SingleProperty },
+  { path: '/Setting/Profile', name: 'Profile Settings', element: Profile },
+  { path: '/Setting/Provicy', name: 'Privacy Settings', element: PrivacySettings },
   { path: '/portfolio', name: 'My Portfolio', element: Portfolio },
+  { path: '/login', name: 'Login', element: Login},
+  { path: '/register', name: 'Register', element: Register},
   { path: '/wallet', name: 'Wallet', element: Wallet},
   { path: '/market', name: 'Market', element: Market},
   { path: '/trade', name: 'Trade', element: Trade},

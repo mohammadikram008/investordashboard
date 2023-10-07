@@ -127,14 +127,14 @@ const _nav = [
         name: 'Profile',
         to: '/Setting/Profile',
       },
+      // {
+      //   component: CNavItem,
+      //   name: 'Others',
+      //   to: '/Setting/Others',
+      // },
       {
         component: CNavItem,
-        name: 'Others',
-        to: '/Setting/Others',
-      },
-      {
-        component: CNavItem,
-        name: 'Privacy Policy',
+        name: 'Privacy Settings',
         to: '/Setting/Provicy',
       },
     ],

@@ -95,6 +95,18 @@ justify-content: start;
   justify-content: end;
   align-items: center;
   margin-bottom: 1rem;
+
+ 
+}
+.filter-div div{
+  border: 1px solid #DF9976;
+  padding: .5rem;
+  border-radius: .2rem;
+  cursor: pointer;
+}
+.filter-div div:hover{
+  background-color: #998972;
+  color: white;
 }
 .collapse-div{
   background-color: #998972;
@@ -107,5 +119,22 @@ justify-content: start;
   margin-left: 2rem;
 }
 .table-body{
-  height: 20rem !important;
+  height: 60vh;
 }
+.table-row-data{
+/* display: flex; */
+/* justify-content: center; */
+/* align-items: center; */
+}
+.center{
+  text-align: center;
+}
+/* .pagination-main-div{
+  position: relative;
+}
+.pagination-main-div .Pagination-main{
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  top: .1rem;
+} */

@@ -1,4 +1,4 @@
-import React, { Fragment ,useEffect,useState} from 'react'
+import React, { Fragment, useEffect, useState } from 'react'
 import { CCard, CCardBody, CCol, CCardHeader, CRow } from '@coreui/react'
 import {
   CChartBar,
@@ -9,14 +9,16 @@ import {
   CChartRadar,
   CChart
 } from '@coreui/react-chartjs'
+import "chart.js/auto";
+import { Bar } from 'react-chartjs-2';
 import axios from 'axios';
 import { DocsCallout } from 'src/components'
 
 const Charts = () => {
   const random = () => Math.round(Math.random() * 100)
-  
-// marketapi
-const [stockData, setStockData] = useState(null);
+
+  // marketapi
+  const [stockData, setStockData] = useState(null);
 
   useEffect(() => {
     // Replace 'YOUR_ALPHA_VANTAGE_API_KEY' with your actual API key
@@ -33,13 +35,26 @@ const [stockData, setStockData] = useState(null);
         // Extract data from the API response
         const timeSeries = response.data['Time Series (5min)'];
         const dates = Object.keys(timeSeries).reverse();
-        const closingPrices = dates.map(date =>
+
+        // Filter data for the last 4 months
+        const last4MonthsDates = dates.slice(0, 5); // Assuming an average month has 30 days
+
+        // Format the dates to "Month-Year" with the year truncated to 2 digits
+        const formattedDates = last4MonthsDates.map(date => {
+          const dateObj = new Date(date);
+          const month = dateObj.toLocaleString('default', { month: 'short' }); // Ensure month is displayed as two digits
+          const year = dateObj.getFullYear().toString().slice(-2);
+          return `${month}-${year}`;
+        });
+
+        const closingPrices = last4MonthsDates.map(date =>
           parseFloat(timeSeries[date]['4. close'])
         );
-
+        console.log("dates", timeSeries)
         // Set the stock data in state
         setStockData({
-          labels: dates,
+          labels: formattedDates,
+          // labels: ['1day', '2mon', '3mon', '6mon', '1year', '2year', '3year'],
           datasets: [
             {
               label: `Stock Price (${symbol})`,
@@ -59,7 +74,7 @@ const [stockData, setStockData] = useState(null);
     // Fetch stock data when the component mounts
     fetchStockData();
   }, []);
-  console.log('stock',stockData)
+  console.log('stock', stockData)
   const chartData = {
     labels: ['January', 'February', 'March', 'April', 'May'],
     datasets: [
@@ -92,7 +107,7 @@ const [stockData, setStockData] = useState(null);
         />
       </CCol> */}
 
-        <CCol xs={12} sm={12} lg={3} md={6}>
+        <CCol xs={12} sm={12} lg={4} md={6}>
           {/* <CCard className="mb-4">
           <CCardHeader>Portfolio Performance</CCardHeader>
           <CCardBody>
@@ -125,33 +140,32 @@ const [stockData, setStockData] = useState(null);
             <CCardHeader>Portfolio Performance</CCardHeader>
             <CCardBody>
               <CChartLine
-                type="line" 
+                type="line"
                 data={{
-                  labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'Jul'],
+                  labels: ['1 mon', '2 mon', '3 mon', '6 mon', '1 yr', '2 yr', '3 yr', '10 yr'],
                   datasets: [
                     {
                       label: "",
-
                       backgroundColor: 'rgba(75, 192, 192, 0.2)',
                       borderColor: 'rgba(75, 192, 192, 1)',
                       borderWidth: 1,
-                      data: [10, 40, 60],
+                      data: [10, 15, 40],
                     }]
                 }}
-                
+
                 options={{
                   plugins: {
                     legend: {
                       display: false, // Hide the legend
                     },
-                    tooltip: {
-                      callbacks: {
-                        label: function (context) {
-                          // Customize the tooltip label to show "Rented Text" when hovering
-                          return `Rent $ ${Math.round(Math.random() * 100)}`;
-                        },
-                      },
-                    },
+                    // tooltip: {
+                    //   callbacks: {
+                    //     label: function (context) {
+                    //       // Customize the tooltip label to show "Rented Text" when hovering
+                    //       return `Rent  `;
+                    //     },
+                    //   },
+                    // },
                   },
                   // plugins: {
                   //   title: {
@@ -164,58 +178,59 @@ const [stockData, setStockData] = useState(null);
 
                 }}
               />
-     
-             
+
+
             </CCardBody>
           </CCard>
         </CCol>
-        <CCol xs={12} sm={12} md={6} lg={3}>
+        <CCol xs={12} sm={12} md={6} lg={4}>
           <CCard className="mb-4">
             <CCardHeader>Market Performance</CCardHeader>
             <CCardBody>
-            {stockData&&
-              <CChartLine
-          
+              {stockData &&
+                <CChartLine
+
                   type="line"
                   data={{
-                    datasets:stockData.datasets,
-                    labels:stockData.labels
-                   }}
-               
-                options={{
-                  plugins: {
-                    legend: {
-                      display: false, // Hide the legend
+                    datasets: stockData.datasets,
+                    labels: stockData.labels
+                  }}
+
+                  options={{
+                    plugins: {
+                      legend: {
+                        display: false, // Hide the legend
+                      },
                     },
-                  },
-                  // plugins: {
-                  //   title: {
-                  //     display: false,
-                  //     text: 'My Custom Chart Title',
-                  //   },
-                  // },
+                    // plugins: {
+                    //   title: {
+                    //     display: false,
+                    //     text: 'My Custom Chart Title',
+                    //   },
+                    // },
 
-                  beginAtZero: true,
+                    beginAtZero: true,
 
-                }}
-              />
-}
+                  }}
+                />
+              }
             </CCardBody>
           </CCard>
         </CCol>
       </CRow>
       <CRow className='d-flex justify-content-center'>
-        <CCol xs={12} sm={12} lg={3} md={6}>
-          <CCard className="mb-5">
+        <CCol xs={12} sm={12} lg={4} md={6}>
+          <CCard className="">
             <CCardHeader>Asset Allocation</CCardHeader>
             <CCardBody>
               <CChartDoughnut
+                className='charts-asset-allocation'
                 data={{
                   labels: ['Cash', 'Property in Pakistan', 'Property in Turkey', 'SaleOut'],
                   datasets: [
                     {
                       backgroundColor: ['#41B883', '#E46651', '#00D8FF', '#DD1B16'],
-                      data: [40, 2, 1, 10],
+                      data: [65, 3, 0, 10],
                     },
                   ],
                 }}
@@ -231,34 +246,43 @@ const [stockData, setStockData] = useState(null);
                   //     text: 'My Custom Chart Title',
                   //   },
                   // },
-             
-                    beginAtZero:true,
-                  
+
+                  beginAtZero: true,
+
                 }}
 
               />
             </CCardBody>
           </CCard>
         </CCol>
-        <CCol xs={12} sm={12} lg={3} md={6}>
+        <CCol xs={12} sm={12} lg={4} md={6}>
           <CCard className="cards-main mb-4">
-            <CCardHeader>List of holdings and percentage of total portfolio in %</CCardHeader>
-            <CCardBody>
-              <CChartBar
+            <CCardHeader>Largest holdings percentage</CCardHeader>
+            <CCardBody className='holding-chart'>
+              <Bar
                 data={{
-                  labels: ['Property 1', 'Property 2', 'Property 3'],
+                  labels: ['Property 1', 'Property 2', 'Property 3', 'Cash'],
                   datasets: [
                     {
                       // label: 'List',
                       backgroundColor: '#f87979',
-                      data: [40, 20, 70, ],
+                      data: [10, 20, 70, 65],
                     },
                   ],
                 }}
                 options={{
+                  indexAxis: 'y',
                   plugins: {
                     legend: {
                       display: false, // Hide the legend
+                    },
+                  },
+                  scales: {
+                    x: {
+                      beginAtZero: true,
+                    },
+                    y: {
+                      beginAtZero: true,
                     },
                   },
                   // plugins: {
@@ -267,9 +291,9 @@ const [stockData, setStockData] = useState(null);
                   //     text: 'My Custom Chart Title',
                   //   },
                   // },
-             
-                    beginAtZero:true,
-                  
+
+                  beginAtZero: true,
+
                 }}
               />
             </CCardBody>

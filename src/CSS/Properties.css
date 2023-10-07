@@ -65,8 +65,13 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-bottom: 20PX;
+    /* margin-bottom: 20PX; */
     color: #ca974b;
+    
+
+}
+.property-heading h1{
+  font-size: 32px;
 }
 
 

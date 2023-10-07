@@ -8,9 +8,21 @@
 }
 
 .cards-main {
-  height: 85%;
+  height: 100%;
 }
-
+.holding-chart{
+  display: flex;
+  justify-content: center;
+  align-items:center;
+  /* width: 100% !important; */
+ 
+}
+.charts-asset-allocation{
+width: 80%;
+display: flex;
+justify-content: center;
+align-items:center;
+}
 .breadcrum-class {
   text-decoration: none;
   color: #324466;
@@ -63,7 +75,18 @@
     width: 12vmin;
   }
 }
-
+.btn-login{
+  background-color: aliceblue;
+  color: #CA974B;
+  border:#CA974B 1px solid;
+}
+.btn-login:hover{
+  background-color: #CA974B;
+  color: white;
+}
+.login-heading{
+  color:#CA974B ;
+}
 @keyframes spin {
   100% {
     transform: rotate(360deg);

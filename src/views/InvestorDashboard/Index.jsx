@@ -6,6 +6,7 @@ import '../../CSS/InvestorDashBoard.css'
 import pro3 from'../../assets/images/pro3.jpg'
 import Details from './InvestorDashboardComponent/DetailLayout/Index'
 import Financial from './InvestorDashboardComponent/FinancialLayout/Index'
+import OwnerArea from './InvestorDashboardComponent/OwnerArea/Index'
 const Index = () => {
     const location = useLocation();
     const [data, setData] = useState("");
@@ -45,17 +46,13 @@ const Index = () => {
                                 <li  onClick={() => handleChange("Details")}>Details</li>|
                                 <li onClick={() => handleChange("Financial")}>Financial</li>|
                                 {/* <li className="tooltip-btn" data-tooltip="Owner Access">Owner Area</li> */}
-                                <li className="">Owner's Area</li>
+                                <li onClick={() => handleChange("OwnerArea")} className="">Owner's Area</li>
                             </ul>
                         </div>
 
                     </Col>
                     <Col md='10 m-2' className='detail-main-col' >
-
-                        {loadfram === "Financial" ?   <Financial />:<Details />}
-
-
-
+                        {loadfram === "Financial" ?   <Financial />:loadfram === "OwnerArea" ?<OwnerArea/>: <Details />}
                     </Col>
                 </div>
             </Row>

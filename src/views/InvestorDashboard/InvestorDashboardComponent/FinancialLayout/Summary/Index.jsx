@@ -9,7 +9,7 @@ const Index = () => {
           <Table>
             <tbody>
               <tr>
-                <td>1 Year Price Change::</td>
+                <td>1 Year Price Change:</td>
                 <td>4%</td>
               </tr>
               <tr>

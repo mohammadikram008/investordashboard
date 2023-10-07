@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from 'react'
+import React, { Fragment, useState,useEffect } from 'react'
 
 import {
   Table,
@@ -21,13 +21,14 @@ const Index = () => {
   const [toDate, setToDate] = useState('');
   const [statementname, setStatementName] = useState('');
 
+
   // Define the initial data including "Net Total"
 
   const income_statement = [
     [{ content: 'Revenues', styles: { fontStyle: 'bold', halign: 'center', fillColor: [220, 220, 220] } }, 'Amount'],
     ['Rental Income', 10],
     ['Fee and Asset Management', 5],
-    [{ content: 'Total Revenues', styles: { fontStyle: 'bold', halign: 'start',  } },, 0],
+    [{ content: 'Total Revenues', styles: { fontStyle: 'bold', halign: 'start', } }, , 0],
     [{ content: 'Expenses', styles: { fontStyle: 'bold', halign: 'center', fillColor: [220, 220, 220] } }],
     ['Property Maintenance', 40],
     ['Real Estate Taxes', 10],
@@ -37,8 +38,8 @@ const Index = () => {
     ['Depreciation', 10],
     ['General and Administrative', 20],
     ['Impairments', 30],
-    [{ content: 'Total Expenses', styles: { fontStyle: 'bold', halign: 'start' } },, 0],
-    [{ content: 'Net Income(revenue-expense)', styles: { fontStyle: 'bold', halign: 'start', fillColor: [220, 220, 220] } },, 0],
+    [{ content: 'Total Expenses', styles: { fontStyle: 'bold', halign: 'start' } }, , 0],
+    [{ content: 'Net Income(revenue-expense)', styles: { fontStyle: 'bold', halign: 'start', fillColor: [220, 220, 220] } }, , 0],
   ];
   const balance_sheet = [
     [{ content: 'Assets', styles: { fontStyle: 'bold', halign: 'center', fillColor: [220, 220, 220] } }, 'Amount'],
@@ -50,36 +51,81 @@ const Index = () => {
     ['Interest Expenses', 10],
     ['Annual Depreciation', 20],
     [{ content: 'Total Expenses', styles: { fontStyle: 'bold' } }, 0],
-    [{ content: 'Net Income', styles: { fontStyle: 'bold' } }, 0],  ];
+    [{ content: 'Net Income', styles: { fontStyle: 'bold' } }, 0],];
+  const cashflowData = [
+    [{ content: 'Category', styles: { fontStyle: 'bold', halign: 'center', fillColor: [220, 220, 220] } }, 'Monthly'],
+    ['Property Value', 465],
+    [{ content: 'Scheduled Income', styles: { fontStyle: 'bold', halign: 'center', fillColor: [220, 220, 220] } }, ],
+    ['Monthly Rent', 40],
+    ['Effective Gross Income/Rent', 50],
+    [{ content: 'Expenses', styles: { fontStyle: 'bold', halign: 'center', fillColor: [220, 220, 220] } },],
+    ['Replacement Reserve', 40],
+    ['Repair & Maintenance Reserve', 10],
+    ['Property Management', 100],
+    ['Property Taxes & HOI', 30],
+    [{ content: 'Total Operating Expenses', styles: { fontStyle: 'bold' } }, 100],
+    [{ content: 'Expenses Over Effective Gross Income/Rent', styles: { fontStyle: 'bold' } }, 20],
+    [{ content: 'Net Income', styles: { fontStyle: 'bold' } }, 0],
+  ];
   const [tableData, setTableData] = useState(income_statement);
   const [balancesheet, setBalanceSheet] = useState(balance_sheet);
-  const generatePdf = (props) => {
+  const [cashflow, setCashFlow] = useState(cashflowData);
+
+  // useEffect(() => {
+   
+  // }, []);
+
+  const calculateNetTotalIncome = () => {
+    // Calculate total scheduled income
+    // Calculate total scheduled income
+    const monthlyRent = cashflow[3][1];
+    const effectiveGrossIncome = cashflow[3][2];
+    const totalScheduledIncome = monthlyRent + effectiveGrossIncome;
+
+    // Calculate total expenses
+    const replacementReserve = cashflow[5][1];
+    const repairMaintenanceReserve = cashflow[5][2];
+    console.log("repairMaintenanceReserve",repairMaintenanceReserve)
+    const propertyManagements = cashflow[5][3];
+    console.log("propertyManagement",propertyManagements)
+    const propertyTaxesHOI = cashflow[5][4];
+    const totalExpenses = replacementReserve + repairMaintenanceReserve + propertyManagements + propertyTaxesHOI;
+
+    // Calculate net total income
+    const netTotalIncome = totalScheduledIncome - totalExpenses;
+
+    // Update the Net Income value
+    const updatedData = [...cashflow];
+    updatedData[8][1] = netTotalIncome;
+    setCashFlow(updatedData);
+  };
+  const generatePdf = () => {
     console.log("statmentname", statementname)
     if (statementname === "Income Statement") {
       const calculateTotals = () => {
         let totalRevenues = 0;
         let totalExpenses = 0;
 
-         // Calculate total revenues
-    for (let i = 1; i <= 2; i++) {
-      totalRevenues += tableData[i][1];
-    }
+        // Calculate total revenues
+        for (let i = 1; i <= 2; i++) {
+          totalRevenues += tableData[i][1];
+        }
 
-    // Calculate total expenses
-    for (let i = 5; i <= 12; i++) {
-      totalExpenses += tableData[i][1];
-    }
+        // Calculate total expenses
+        for (let i = 5; i <= 12; i++) {
+          totalExpenses += tableData[i][1];
+        }
 
-    // Calculate net income
-    const netIncome = totalRevenues - totalExpenses;
+        // Calculate net income
+        const netIncome = totalRevenues - totalExpenses;
 
-    // Update the totals in the table
-    const updatedData = [...tableData];
-    updatedData[3][1] = totalRevenues;
-    updatedData[13][1] = totalExpenses;
-    updatedData[14][1] = netIncome;
+        // Update the totals in the table
+        const updatedData = [...tableData];
+        updatedData[3][1] = totalRevenues;
+        updatedData[13][1] = totalExpenses;
+        updatedData[14][1] = netIncome;
 
-    setTableData(updatedData);
+        setTableData(updatedData);
       };
       // Validate date range
       if (!fromDate || !toDate) {
@@ -92,55 +138,55 @@ const Index = () => {
 
       // Create a new PDF document
       const doc = new jsPDF();
-// Add title and date range centered at the top
-doc.setFontSize(18);
-doc.text(' Income Statement', doc.internal.pageSize.getWidth() / 2, 20, 'center');
-doc.setFontSize(12);
-doc.text(`Report Date Range: ${fromDate} - ${toDate}`, doc.internal.pageSize.getWidth() / 2, 30, 'center');
+      // Add title and date range centered at the top
+      doc.setFontSize(18);
+      doc.text(' Income Statement', doc.internal.pageSize.getWidth() / 2, 20, 'center');
+      doc.setFontSize(12);
+      doc.text(`Report Date Range: ${fromDate} - ${toDate}`, doc.internal.pageSize.getWidth() / 2, 30, 'center');
 
-// Set the table header style
-doc.autoTable({
-  head: [['Revenues', 'Amount']],
-  body: tableData.slice(1), // Exclude the first row
-  startY: 40, // Position below the title and date range
-  theme: 'plain', // Remove table border
-});
+      // Set the table header style
+      doc.autoTable({
+        head: [['Revenues', 'Amount']],
+        body: tableData.slice(1), // Exclude the first row
+        startY: 40, // Position below the title and date range
+        theme: 'plain', // Remove table border
+      });
 
-// Save the PDF
-// doc.save('rental_property_income_statement.pdf');
+      // Save the PDF
+      // doc.save('rental_property_income_statement.pdf');
 
-// Open the PDF in a new tab
-const pdfBlob = doc.output('blob');
-const pdfUrl = URL.createObjectURL(pdfBlob);
-window.open(pdfUrl, '_blank');
+      // Open the PDF in a new tab
+      const pdfBlob = doc.output('blob');
+      const pdfUrl = URL.createObjectURL(pdfBlob);
+      window.open(pdfUrl, '_blank');
     }
     else if (statementname === 'Balance Sheet') {
       const calculateNetTotalRealEstate = () => {
         const grossAssets = balancesheet[1][1];
         const accumulatedDepreciation = balancesheet[2][1];
         const netTotalRealEstate = grossAssets - accumulatedDepreciation;
-    
+
         // Update the Net Total Real Estate value
         const updatedData = [...balancesheet];
         updatedData[3][1] = netTotalRealEstate;
-    
+
         setBalanceSheet(updatedData);
       };
-    
+
       const calculateNetIncome = () => {
         const operatingExpenses = balancesheet[5][1];
         const interestExpenses = balancesheet[6][1];
         const annualDepreciation = balancesheet[7][1];
         const totalExpenses = operatingExpenses + interestExpenses + annualDepreciation;
-    
+
         // Calculate Net Income
         const netIncome = balancesheet[3][1] - totalExpenses;
-    
+
         // Update the Total Expenses and Net Income values
         const updatedData = [...balancesheet];
         updatedData[8][1] = totalExpenses;
         updatedData[9][1] = netIncome;
-    
+
         setBalanceSheet(updatedData);
       };
       // Validate date range
@@ -150,28 +196,28 @@ window.open(pdfUrl, '_blank');
       }
 
       // Calculate the Net Total dynamically
-       // Calculate Net Total Real Estate
-    calculateNetTotalRealEstate();
+      // Calculate Net Total Real Estate
+      calculateNetTotalRealEstate();
 
-    // Calculate Net Income
-    calculateNetIncome();
+      // Calculate Net Income
+      calculateNetIncome();
 
-    // Create a new PDF document
-    const doc = new jsPDF();
+      // Create a new PDF document
+      const doc = new jsPDF();
 
-    // Add title and date range centered at the top
-    doc.setFontSize(18);
-    doc.text('Balance Sheet', doc.internal.pageSize.getWidth() / 2, 20, 'center');
-    doc.setFontSize(12);
-    doc.text(`Report Date Range: ${fromDate} - ${toDate}`, doc.internal.pageSize.getWidth() / 2, 30, 'center');
+      // Add title and date range centered at the top
+      doc.setFontSize(18);
+      doc.text('Balance Sheet', doc.internal.pageSize.getWidth() / 2, 20, 'center');
+      doc.setFontSize(12);
+      doc.text(`Report Date Range: ${fromDate} - ${toDate}`, doc.internal.pageSize.getWidth() / 2, 30, 'center');
 
-    // Set the table header style
-    doc.autoTable({
-      head: [['Assets', 'Amount']],
-      body: balancesheet.slice(1), // Exclude the first row
-      startY: 40, // Position below the title and date range
-      theme: 'plain', // Remove table border
-    });
+      // Set the table header style
+      doc.autoTable({
+        head: [['Assets', 'Amount']],
+        body: balancesheet.slice(1), // Exclude the first row
+        startY: 40, // Position below the title and date range
+        theme: 'plain', // Remove table border
+      });
 
       // Save the PDF
       // doc.save('income_statement.pdf');
@@ -181,51 +227,36 @@ window.open(pdfUrl, '_blank');
       const pdfUrl = URL.createObjectURL(pdfBlob);
       window.open(pdfUrl, '_blank');
     }
-    // else if (statementname === 'Cash Flow') {
+    else if (statementname === 'Cash Flow') {
+      if (!fromDate || !toDate) {
+        alert('Please select both "From Date" and "To Date".');
+        return;
+      }
+      calculateNetTotalIncome();
+      // Create a new PDF document
+      const doc = new jsPDF();
+  
+      // Add title and date range centered at the top
+      doc.setFontSize(18);
+      doc.text('Cash Flow Statement', doc.internal.pageSize.getWidth() / 2, 20, 'center');
+      doc.setFontSize(12);
+      doc.text(`Report Date Range: ${fromDate} - ${toDate}`, doc.internal.pageSize.getWidth() / 2, 30, 'center');
+  
+      // Set the table header style
+      doc.autoTable({
+        head: [['Detail', 'Monthly Amount']],
+        body: cashflow.slice(1), // Exclude the first row
+        startY: 40, // Position below the title and date range
+        theme: 'plain', // Remove table border
+      });
+      // Save the PDF
+      // doc.save('income_statement.pdf');
 
-    //   // Validate date range
-    //   if (!fromDate || !toDate) {
-    //     alert('Please select both "From Date" and "To Date".');
-    //     return;
-    //   }
-
-    //   // Calculate the Net Total dynamically
-    //   let netTotal = 0;
-    //   for (let i = 1; i < initialData.length - 1; i++) {
-    //     netTotal += initialData[i][1];
-    //   }
-
-    //   // Update the "Net Total" row with the calculated value
-    //   const updatedData = [...initialData];
-    //   updatedData[4][1] = netTotal;
-
-    //   // Create a new PDF document
-    //   const doc = new jsPDF();
-
-    //   // Add "Income Statement" centered at the top
-    //   doc.setFontSize(18);
-    //   doc.text('Cash Flow', doc.internal.pageSize.getWidth() / 2, 20, 'center');
-
-    //   // Display the selected date range below the title
-    //   doc.setFontSize(12);
-    //   doc.text(`Report Date Range: ${fromDate} - ${toDate}`, doc.internal.pageSize.getWidth() / 2, 30, 'center');
-
-    //   // Set the table header style
-    //   doc.autoTable({
-    //     head: [['Income ', 'Amount']],
-    //     body: updatedData.slice(1), // Exclude the header row
-    //     startY: 40, // Position below the title and date range
-    //     theme: 'plain', // Add grid lines
-    //   });
-
-    //   // Save the PDF
-    //   // doc.save('income_statement.pdf');
-
-    //   // Open the PDF in a new tab
-    //   const pdfBlob = doc.output('blob');
-    //   const pdfUrl = URL.createObjectURL(pdfBlob);
-    //   window.open(pdfUrl, '_blank');
-    // }
+      // Open the PDF in a new tab
+      const pdfBlob = doc.output('blob');
+      const pdfUrl = URL.createObjectURL(pdfBlob);
+      window.open(pdfUrl, '_blank');
+    }
   };
 
   return (

@@ -20,7 +20,7 @@ const Index = () => {
   const transactions = [
     {
       id: 1,
-      date: '2023-09-01',
+      date: '2023-07-01',
       amount: 100.0,
       account: 'Savings',
       comments: 'Deposit',
@@ -28,7 +28,7 @@ const Index = () => {
     },
     {
       id: 2,
-      date: '2023-09-02',
+      date: '2023-07-12',
       amount: -50.0,
       account: 'Checking',
       comments: 'Withdrawal',
@@ -36,7 +36,7 @@ const Index = () => {
     },
     {
       id: 3,
-      date: '2023-09-03',
+      date: '2023-08-03',
       amount: 75.0,
       account: 'Savings',
       comments: 'Deposit',
@@ -44,7 +44,7 @@ const Index = () => {
     },
     {
       id: 4,
-      date: '2023-09-04',
+      date: '2023-08-24',
       amount: -30.0,
       account: 'Checking',
       comments: 'Withdrawal',
@@ -52,7 +52,7 @@ const Index = () => {
     },
     {
       id: 5,
-      date: '2023-09-05',
+      date: '2023-09-15',
       amount: 60.0,
       account: 'Savings',
       comments: 'Deposit',
@@ -68,7 +68,7 @@ const Index = () => {
     },
     {
       id: 7,
-      date: '2023-09-07',
+      date: '2023-09-27',
       amount: 90.0,
       account: 'Savings',
       comments: 'Deposit',
@@ -76,7 +76,7 @@ const Index = () => {
     },
     {
       id: 8,
-      date: '2023-09-08',
+      date: '2023-10-01',
       amount: -45.0,
       account: 'Checking',
       comments: 'Withdrawal',
@@ -84,7 +84,7 @@ const Index = () => {
     },
     {
       id: 9,
-      date: '2023-09-09',
+      date: '2023-10-03',
       amount: 120.0,
       account: 'Savings',
       comments: 'Deposit',
@@ -92,47 +92,80 @@ const Index = () => {
     },
     {
       id: 10,
-      date: '2023-09-10',
+      date: '2023-10-06',
       amount: -20.0,
       account: 'Checking',
       comments: 'Withdrawal',
       balance: 275.0,
     },
   ];
-  const pageSize = 5; // Number of items per page
-  const [currentPage, setCurrentPage] = useState(0);
+  // const pageSize = 5; // Number of items per page
+  // const [currentPage, setCurrentPage] = useState(0);
+  // const [startDate, setStartDate] = useState("");
+  // const [endDate, setEndDate] = useState("");
+  // const [filteredTransactions, setFilteredTransactions] = useState([]);
+
+  // const handlePageClick = (pageIndex) => {
+  //   setCurrentPage(pageIndex);
+  // };
+
+  // const filterTransactions = () => {
+  //   let filtered = transactions;
+
+  //   if (startDate && endDate) {
+  //     // Filter transactions based on the date range
+  //     filtered = filtered.filter((transaction) => {
+  //       const transactionDate = new Date(transaction.date);
+  //       const start = new Date(startDate);
+  //       const end = new Date(endDate);
+  //       return transactionDate >= start && transactionDate <= end;
+  //     });
+  //   }
+
+  //   return filtered;
+  // };
+
+  // const renderTransactions = () => {
+  //   const filteredTransactions = filterTransactions();
+  //   const startIndex = currentPage * pageSize;
+  //   const endIndex = startIndex + pageSize;
+
+  //   return filteredTransactions.slice(startIndex, endIndex).map((transaction) => (
+  //     <tr key={transaction.id}>
+  //       <td>{transaction.id}</td>
+  //       <td>{transaction.date}</td>
+  //       <td>{transaction.amount}</td>
+  //       <td>{transaction.account}</td>
+  //       <td>{transaction.comments}</td>
+  //       <td>{transaction.balance}</td>
+  //     </tr>
+  //   ));
+  // };
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
-  const [filteredTransactions, setFilteredTransactions] = useState([]);
-
-  const handlePageClick = (pageIndex) => {
-    setCurrentPage(pageIndex);
-  };
+  const [filteredTransactions, setFilteredTransactions] = useState(transactions);
 
   const filterTransactions = () => {
-    let filtered = transactions;
-
     if (startDate && endDate) {
-      // Filter transactions based on the date range
-      filtered = filtered.filter((transaction) => {
+      const start = new Date(startDate);
+      const end = new Date(endDate);
+
+      const filteredData = transactions.filter((transaction) => {
         const transactionDate = new Date(transaction.date);
-        const start = new Date(startDate);
-        const end = new Date(endDate);
         return transactionDate >= start && transactionDate <= end;
       });
-    }
 
-    return filtered;
+      setFilteredTransactions(filteredData);
+    } else {
+      // If no date range is selected, show all data
+      setFilteredTransactions(transactions);
+    }
   };
 
   const renderTransactions = () => {
-    const filteredTransactions = filterTransactions();
-    const startIndex = currentPage * pageSize;
-    const endIndex = startIndex + pageSize;
-
-    return filteredTransactions.slice(startIndex, endIndex).map((transaction) => (
+    return filteredTransactions.map((transaction,index) => (
       <tr key={transaction.id}>
-        <td>{transaction.id}</td>
+         <td>{index}</td>
         <td>{transaction.date}</td>
         <td>{transaction.amount}</td>
         <td>{transaction.account}</td>
@@ -141,7 +174,6 @@ const Index = () => {
       </tr>
     ));
   };
-
   return (
     <Fragment>
       <div className='date-div'>
@@ -152,6 +184,7 @@ const Index = () => {
             id="startDate"
             value={startDate}
             onChange={(e) => setStartDate(e.target.value)}
+            // onBlur={() => filterTransactions()}
           />
         </FormGroup>
         <FormGroup className='date-form mt-3'>
@@ -161,8 +194,10 @@ const Index = () => {
             id="endDate"
             value={endDate}
             onChange={(e) => setEndDate(e.target.value)}
+            // onBlur={() => filterTransactions()}
           />
         </FormGroup>
+        <Button className='btn-transection btn-filter ' onClick={filterTransactions}>Search</Button>
         {/* <button className='btn-transection btn-filter ' onClick={() => handleFilterClick()}>Filter</button> */}
       </div>
       <Table hover responsive >
@@ -178,7 +213,7 @@ const Index = () => {
         </thead>
         <tbody>{renderTransactions()}</tbody>
       </Table>
-      <Pagination>
+      {/* <Pagination>
         <PaginationItem disabled={currentPage === 0}>
           <PaginationLink previous onClick={() => handlePageClick(currentPage - 1)} />
         </PaginationItem>
@@ -190,7 +225,7 @@ const Index = () => {
         <PaginationItem disabled={currentPage === Math.ceil(filterTransactions().length / pageSize) - 1}>
           <PaginationLink next onClick={() => handlePageClick(currentPage + 1)} />
         </PaginationItem>
-      </Pagination>
+      </Pagination> */}
     </Fragment>
   )
 }

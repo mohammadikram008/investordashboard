@@ -54,6 +54,8 @@
     width: 10%;
     height: 5%;
     margin-left: 2rem ;
+    border-radius: .5rem;
+    background-color: aliceblue;
 }
 
 .reports-headings{

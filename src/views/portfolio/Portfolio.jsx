@@ -10,24 +10,38 @@ import { UncontrolledCarousel } from 'reactstrap';
 const Portfolio = () => {
   const propertyData = [
     {
+      id: 0,
+      name: 'Cash',
+      address: '',
+      city: '',
+      country: '',
+      type: '',
+      price: "PKR 65",
+      FeetOwned:""
+      // propertyDescription: 'Description for Property 1',
+      // image: 'https://azizidevelopments.com/assets/images/projects/1603263070389162780.jpg',
+  },
+    {
       id: 1,
       name: 'House E-11/4',
       address: 'House no 45, Street 45, E-11/4',
       city: 'Islamabad',
       country: 'Pakistan',
-      type: 'FLat',
-      price: "PKR 6575",
+      type: 'Flat',
+      price: "PKR 657,5",
+      FeetOwned:"45"
       // propertyDescription: 'Description for Property 1',
       // image: 'https://azizidevelopments.com/assets/images/projects/1603263070389162780.jpg',
   },
   {
       id: 2,
-      name: 'Apartment DHA/2',
-      address: 'Apartment no 65, Street 1, DHA/2',
+      name: 'Apartment DHA Phase-2',
+      address: 'Apartment no 65, Street 1, DHA Phase-2',
       city: 'Lahore',
       country: 'Pakistan',
-      type: 'Appartment',
-      price: "PKR 1598",
+      type: 'Apartment',
+      price: "PKR 159,8",
+      FeetOwned:"42"
       // propertyDescription: 'Description for Property 2',
       // image: 'https://azizidevelopments.com/assets/images/projects/15795279721750900140.jpg',
   },
@@ -38,7 +52,8 @@ const Portfolio = () => {
       city: 'Peshawar',
       country: 'Pakistan',
       type: 'Home',
-      price: 'PKR 1500',
+      price: 'PKR 150,0',
+      FeetOwned:"20"
       // propertyDescription: 'Description for Property 2',
       // image: 'https://azizidevelopments.com/assets/images/projects/1624972383238283745.jpg',
   },
@@ -178,7 +193,7 @@ const Portfolio = () => {
 
               
             ))} */}
-            <Pagination itemsPerPage={2} properties={propertyData} />
+            <Pagination itemsPerPage={2} properties={propertyData}  Portfolio={"Portfolio"}/>
 
           </Col>
         </Row>
