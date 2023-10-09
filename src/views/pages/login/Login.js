@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import {
   CButton,
   CCard,
@@ -18,6 +18,7 @@ import { cilLockLocked, cilUser } from '@coreui/icons'
 import { Button } from 'reactstrap'
 
 const Login = () => {
+  const Navigate=useNavigate()
   return (
     <div className=" d-flex mt-5 flex-row align-items-center">
       <CContainer>
@@ -52,7 +53,7 @@ const Login = () => {
                         </Button>
                       </CCol>
                       <CCol xs={6} className="text-right">
-                        <CButton color="link" className="px-0">
+                        <CButton color="link" className="px-0" onClick={()=>Navigate('/ForgotPassword')}>
                           Forgot password?
                         </CButton>
                       </CCol>

@@ -6,9 +6,11 @@ const SingleProperty = React.lazy(() => import('./views/explore/propertydetail/P
 const Portfolio = React.lazy(() => import('./views/portfolio/Portfolio'))
 const Profile =React.lazy(() => import('./views/Settings/Profile/Index'))
 const PrivacySettings =React.lazy(() => import('./views/Settings/Privacy Settings/Index'))
-
+const PasswordChange =React.lazy(() => import('./views/pages/ChangePassword/Index'))
+const VerificationPage =React.lazy(() => import('./views/pages/Verificationdetail/Index'))
 const Login=React.lazy(() => import('./views/pages/login/Login'))
 
+const ForgotPassword =React.lazy(() => import('./views/pages/ForgotPassword/Index'))
 const Register =React.lazy(() => import('./views/pages/register/Register'))
 
 const Dashboard = React.lazy(() => import('./views/dashboard/Dashboard'))
@@ -76,6 +78,10 @@ const routes = [
   { path: '/portfolio', name: 'My Portfolio', element: Portfolio },
   { path: '/login', name: 'Login', element: Login},
   { path: '/register', name: 'Register', element: Register},
+  { path: '/VerificationPage', name: 'VerificationPage', element: VerificationPage},
+  { path: '/PasswordChange', name: 'PasswordChange', element: PasswordChange},
+  { path: '/ForgotPassword', name: 'ForgotPassword', element: ForgotPassword},
+
   { path: '/wallet', name: 'Wallet', element: Wallet},
   { path: '/market', name: 'Market', element: Market},
   { path: '/trade', name: 'Trade', element: Trade},
