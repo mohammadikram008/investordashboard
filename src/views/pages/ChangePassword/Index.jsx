@@ -50,8 +50,9 @@ const Index = () => {
       };
   return (
   <Fragment>
- <div>
+ <div className='change-pass-main-div'>
       <h2>Password Change</h2>
+      <div className='verification-form-div mt-5'>
       <Form onSubmit={handleSubmit}>
         {error && <Alert color="danger">{error}</Alert>}
         <FormGroup>
@@ -94,6 +95,7 @@ const Index = () => {
           Change Password
         </Button>
       </Form>
+      </div>
     </div>
   </Fragment>
   )

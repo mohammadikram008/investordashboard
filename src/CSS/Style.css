@@ -92,3 +92,27 @@ align-items:center;
     transform: rotate(360deg);
   }
 }
+.profile-div{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* flex-direction: column; */
+  /* padding: 2rem; */
+  
+}
+.verification-form-div{
+  /* background-color: #09f; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.change-pass-main-div{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  
+}
+.change-pass-main-div h2{
+  color: #CA974B;
+}

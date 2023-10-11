@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{useState} from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import {
   CButton,
@@ -16,9 +16,39 @@ import {
 import CIcon from '@coreui/icons-react'
 import { cilLockLocked, cilUser } from '@coreui/icons'
 import { Button } from 'reactstrap'
-
+import axios from 'axios'
 const Login = () => {
   const Navigate=useNavigate()
+  const [formData, setFormData] = useState({
+    email: '',
+    password: '',
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  };
+
+  const handleLogin = async () => {
+    try {
+      // Make a POST request to your Node.js API endpoint
+      const response = await axios.post('http://localhost:3005/api/tasks/login', formData);
+      console.log('API response:', response.data);
+      localStorage.setItem('authToken', response.data.token);
+      setFormData({
+        email: '',
+        password: '',})
+
+      // Redirect the user or perform other actions based on the API response
+      // For example, if the response contains a token, you can store it in localStorage.
+    } catch (error) {
+      console.error('API error:', error);
+      // Handle errors, e.g., show an error message to the user
+    }
+  };
   return (
     <div className=" d-flex mt-5 flex-row align-items-center">
       <CContainer>
@@ -34,7 +64,13 @@ const Login = () => {
                       <CInputGroupText>
                         <CIcon icon={cilUser} />
                       </CInputGroupText>
-                      <CFormInput placeholder="Username" autoComplete="username" />
+                      <CFormInput 
+                   name="email"
+                   placeholder="Email"
+                   autoComplete="email"
+                   value={formData.email}
+                   onChange={handleChange}
+                    />
                     </CInputGroup>
                     <CInputGroup className="mb-4">
                       <CInputGroupText>
@@ -42,13 +78,16 @@ const Login = () => {
                       </CInputGroupText>
                       <CFormInput
                         type="password"
+                        name="password"
                         placeholder="Password"
                         autoComplete="current-password"
+                        value={formData.password}
+                        onChange={handleChange}
                       />
                     </CInputGroup>
                     <CRow>
                       <CCol xs={6}>
-                        <Button color="primary" className=" btn-login">
+                        <Button color="primary" className=" btn-login" onClick={handleLogin}>
                           Login
                         </Button>
                       </CCol>

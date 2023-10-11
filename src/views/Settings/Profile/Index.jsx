@@ -5,7 +5,7 @@ const Index = () => {
     const Navigate=useNavigate();
   return (
   <Fragment>
-<div>
+<div className='profile'>
     <Button  className='btn-login' onClick={()=>Navigate('/login')}>Login</Button>
     <Button className='btn-login mx-5' onClick={()=>Navigate('/register')}>Register</Button>
     <Button className='btn-login ' onClick={()=>Navigate('/VerificationPage')}>Verification</Button>
