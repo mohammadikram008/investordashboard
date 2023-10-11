@@ -32,7 +32,7 @@ const Index = () => {
           // Make an API request to change the password here
           // You can use libraries like Axios to make the request
           // Example:
-          // await axios.post('/api/password-change', formData);
+          await axios.post('http://localhost:3005/api/tasks/password-change', formData);
     
           console.log('Password changed successfully');
           setFormData({

@@ -59,7 +59,7 @@ const Index = () => {
         try {
             // Send the user profile data and selected payment method details to your API here
             // Example: await axios.post('/api/profile', { ...formData, paymentMethodData });
-            await axios.post('http://localhost:3005/api/tasks/profile', { ...formData,paymentMethod, ...bankData });
+            await axios.post('http://localhost:3005/api/tasks/profile', { ...formData,paymentMethod, ...bankData,...cryptoWalletData });
             console.log('Profile data submitted:', { ...formData });
             console.log('Bank Account data:', { ...bankData });
             console.log('Crypto Wallet data:', { ...cryptoWalletData });

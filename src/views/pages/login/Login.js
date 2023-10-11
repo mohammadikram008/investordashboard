@@ -38,6 +38,7 @@ const Login = () => {
       const response = await axios.post('http://localhost:3005/api/tasks/login', formData);
       console.log('API response:', response.data);
       localStorage.setItem('authToken', response.data.token);
+      alert("Login SuccessFully!")
       setFormData({
         email: '',
         password: '',})
@@ -46,6 +47,7 @@ const Login = () => {
       // For example, if the response contains a token, you can store it in localStorage.
     } catch (error) {
       console.error('API error:', error);
+      alert("error",error)
       // Handle errors, e.g., show an error message to the user
     }
   };
