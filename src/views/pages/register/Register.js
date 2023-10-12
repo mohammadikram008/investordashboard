@@ -25,7 +25,7 @@ const Register = () => {
 
   // Step 2: Create event handlers to update state
   const handleChange = (e) => {
-    console.log("e",e.target)
+    console.log("e", e.target)
     const { name, value } = e.target;
     setFormData({
       ...formData,
@@ -47,10 +47,18 @@ const Register = () => {
       },
       body: JSON.stringify(formData),
     })
-      .then((response) => response.json())
+      .then((response) =>
+        response.json()
+
+      )
       .then((data) => {
         console.log('API response:', data);
-        alert("Register SuccessFully!")
+        if (data.error) {
+
+          alert(data.error)
+        }
+        alert(data.message)
+
         setFormData({
           username: '',
           email: '',
@@ -83,7 +91,7 @@ const Register = () => {
                       onChange={handleChange}
                       name='username' // Step 2: Add onChange handler
                       placeholder="Username"
-                  />
+                    />
                   </CInputGroup>
                   <CInputGroup className="mb-3">
                     <CInputGroupText>@</CInputGroupText>
@@ -92,15 +100,15 @@ const Register = () => {
                       onChange={handleChange} // Step 2: Add onChange handler
                       placeholder="Email"
                       name='email'
-                     />
+                    />
                   </CInputGroup>
                   <CInputGroup className="mb-3">
                     <CInputGroupText>
                       <CIcon icon={cilLockLocked} />
                     </CInputGroupText>
                     <CFormInput
-                     value={formData.password}
-                     onChange={handleChange}
+                      value={formData.password}
+                      onChange={handleChange}
                       type="password"
                       name='password'
                       placeholder="Password"
@@ -112,8 +120,8 @@ const Register = () => {
                       <CIcon icon={cilLockLocked} />
                     </CInputGroupText>
                     <CFormInput
-                     value={formData.repeatPassword}
-                     onChange={handleChange}
+                      value={formData.repeatPassword}
+                      onChange={handleChange}
                       type="password"
                       name='repeatPassword'
                       placeholder="Repeat password"
