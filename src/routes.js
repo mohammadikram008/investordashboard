@@ -73,7 +73,7 @@ const routes = [
   { path: '/explore', name: 'Properties', element: Properties },
   { path: '/explore/OwnerAcess', name: 'OwnerAcces', element: OwnerAcess },
   { path: '/explore/propertydetail', name: 'Property Details', element: SingleProperty },
-  { path: '/Setting/Profile', name: 'Profile Settings', element: Profile },
+  { path: '/Setting/Profile', name: 'Profile Settings', element: Login },
   { path: '/Setting/Provicy', name: 'Privacy Settings', element: PrivacySettings },
   { path: '/portfolio', name: 'My Portfolio', element: Portfolio },
   { path: '/login', name: 'Login', element: Login},

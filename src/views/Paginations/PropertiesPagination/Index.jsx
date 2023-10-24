@@ -176,7 +176,10 @@ const Index = ({ properties, itemsp, Portfolio }) => {
           </Input>
         </FormGroup>
       </Collapse>
-      <Table hover className='table-body'>
+      <div className='table-body'>
+
+     
+      <Table hover >
         <thead>
           <tr>
             <th>#</th>
@@ -191,6 +194,7 @@ const Index = ({ properties, itemsp, Portfolio }) => {
         </thead>
         <tbody>{renderProperties()}</tbody>
       </Table>
+      </div>
       <div className='pagination-main-div'>
         <Pagination className='Pagination-main'>
           <PaginationItem disabled={currentPage === 0}>

@@ -134,9 +134,20 @@ const _nav = [
       // },
       {
         component: CNavItem,
-        name: 'Privacy Settings',
-        to: '/Setting/Provicy',
+        name: 'Change Password',
+        to: '/PasswordChange',
       },
+      {
+        component: CNavItem,
+        name: 'Verify Account',
+        to: '/VerificationPage',
+      },
+      // {
+      //   component: CNavItem,
+      //   name: 'Privacy Settings',
+      //   to: '/buttons',
+
+      // },
     ],
   },
   // {
