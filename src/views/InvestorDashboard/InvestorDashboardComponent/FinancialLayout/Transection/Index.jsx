@@ -15,9 +15,11 @@ import {
 import ReactPaginate from "react-js-pagination";
 
 
-const Index = () => {
+const Index = (props) => {
+  console.log("pors",props.data)
+const [transactions,setTransactions]=useState([]);
 
-  const transactions = [
+  const transactionsz = [
     {
       id: 1,
       date: '2023-07-01',
@@ -141,9 +143,20 @@ const Index = () => {
   //     </tr>
   //   ));
   // };
+  let [filteredTransactions, setFilteredTransactions] = useState(transactions);
+  useEffect(() => {
+    // if (Array.isArray(properties) && properties.length > 0) {
+    //   const allTransactions = properties.reduce((all, property) => {
+    //     return all.concat(property.transactions);
+    //   }, []);
+      // setTransactions(allTransactions);
+      // setFilteredTransactions(allTransactions);
+      setTransactions(props.data.transactions);
+      setFilteredTransactions(props.data.transactions);
+    // }
+  }, []);
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
-  const [filteredTransactions, setFilteredTransactions] = useState(transactions);
 
   const filterTransactions = () => {
     if (startDate && endDate) {
@@ -161,10 +174,10 @@ const Index = () => {
       setFilteredTransactions(transactions);
     }
   };
-
+console.log("filteredTransactions",filteredTransactions)
   const renderTransactions = () => {
     return filteredTransactions.map((transaction,index) => (
-      <tr key={transaction.id}>
+      <tr key={transaction._id}>
          <td>{index}</td>
         <td>{transaction.date}</td>
         <td>{transaction.amount}</td>
@@ -174,6 +187,7 @@ const Index = () => {
       </tr>
     ));
   };
+
   return (
     <Fragment>
       <div className='date-div'>

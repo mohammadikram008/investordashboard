@@ -7,18 +7,20 @@ import pro3 from'../../assets/images/pro3.jpg'
 import Details from './InvestorDashboardComponent/DetailLayout/Index'
 import Financial from './InvestorDashboardComponent/FinancialLayout/Index'
 import OwnerArea from './InvestorDashboardComponent/OwnerArea/Index'
-const Index = () => {
-    const location = useLocation();
+const Index = (props) => {
+    // const location = useLocation();
+const propertiedetails=props.propertiedetails;
+
     const [data, setData] = useState("");
     const [loadfram, setLoadFram] = useState("");
     useEffect(() => {
-        setData(location.state)
+        setData(propertiedetails)
 
     }, [])
     const handleChange = (props) => {
         setLoadFram(props);
     }
-   
+    
   return (
    <Fragment>
     <div className='title-div'>
@@ -52,7 +54,7 @@ const Index = () => {
 
                     </Col>
                     <Col md='10 m-2' className='detail-main-col' >
-                        {loadfram === "Financial" ?   <Financial />:loadfram === "OwnerArea" ?<OwnerArea/>: <Details />}
+                        {loadfram === "Financial" ?   <Financial data={data} />:loadfram === "OwnerArea" ?<OwnerArea/>: <Details />}
                     </Col>
                 </div>
             </Row>

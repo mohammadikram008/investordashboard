@@ -4,6 +4,7 @@ import { Col, Row } from 'reactstrap'
 import '../../../CSS/InvestorDashBoard.css'
 import pro3 from '../../../assets/images/pro3.jpg'
 import InvestorDashBoard from '../../InvestorDashboard/Index'
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 // import ImageGallery from '../../ImageGallary/Index'
 import Modal from 'react-modal';
 import ImageGallery from "react-image-gallery";
@@ -11,6 +12,10 @@ import "react-image-gallery/styles/css/image-gallery.css";
 //slider 
 import { UncontrolledCarousel } from 'reactstrap';
 const PropertyDetail = () => {
+    const location = useLocation()
+
+    const [propertiedetails, setPropertiedetails] = useState(location.state);
+    console.log("propertiedetails", propertiedetails)
     const [modalIsOpen, setModalIsOpen] = useState(false);
     const [selectedImage, setSelectedImage] = useState(null);
 
@@ -27,23 +32,23 @@ const PropertyDetail = () => {
     const [Image, setImage] = useState(false);
     const images = [
         {
-          original: "https://azizidevelopments.com/assets/images/projects/15795279721750900140.jpg",
-          thumbnail: "https://azizidevelopments.com/assets/images/projects/15795279721750900140.jpg",
+            original: "https://azizidevelopments.com/assets/images/projects/15795279721750900140.jpg",
+            thumbnail: "https://azizidevelopments.com/assets/images/projects/15795279721750900140.jpg",
         },
         {
-          original: "https://azizidevelopments.com/assets/images/projects/15795279721750900140.jpg",
-          thumbnail: "https://azizidevelopments.com/assets/images/projects/15795279721750900140.jpg",
+            original: "https://azizidevelopments.com/assets/images/projects/15795279721750900140.jpg",
+            thumbnail: "https://azizidevelopments.com/assets/images/projects/15795279721750900140.jpg",
         },
         {
-          original: "https://azizidevelopments.com/assets/images/projects/15795279721750900140.jpg",
-          thumbnail: "https://azizidevelopments.com/assets/images/projects/15795279721750900140.jpg",
+            original: "https://azizidevelopments.com/assets/images/projects/15795279721750900140.jpg",
+            thumbnail: "https://azizidevelopments.com/assets/images/projects/15795279721750900140.jpg",
         },
-      ];
+    ];
     // const images = [
     //     'https://azizidevelopments.com/assets/images/projects/15795279721750900140.jpg',
     //     'https://azizidevelopments.com/assets/images/projects/1624972383238283745.jpg',
     //     'image3.jpg',
-        
+
     // ];
     const items = [
         {
@@ -126,8 +131,12 @@ const PropertyDetail = () => {
                 </Col>
                 <Col md='8'>
                     <div className='single-property-detail-div'>
-                        <h5>House, Rented</h5>
-                        <h5>House no 45, Street 45, E-11/4</h5>
+                        {
+                            <div>
+                                <h5>{propertiedetails.propertytype}, Rented</h5>
+                                <h5>{propertiedetails.address}, {propertiedetails.city}, {propertiedetails.country}</h5>
+                            </div>
+                        }
                         <h5>Bed Rooms: 4</h5>
                         <h5>Bath Rooms: 2</h5>
                         {/* <h5>Occupancy: 1%</h5> */}
@@ -151,7 +160,7 @@ const PropertyDetail = () => {
                 
                 </Col> */}
             </Row>
-            <InvestorDashBoard />
+            <InvestorDashBoard propertiedetails={propertiedetails} />
 
         </Fragment>
     )

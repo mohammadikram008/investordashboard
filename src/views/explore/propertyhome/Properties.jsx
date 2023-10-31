@@ -1,9 +1,10 @@
-import React, { Fragment, useState } from 'react'
+import React, { Fragment, useState,useEffect } from 'react'
 import { Col, Row } from 'reactstrap'
 import pro3 from '../../../assets/images/pro3.jpg'
 import { Link, useNavigate } from 'react-router-dom';
 import '../../../CSS/Properties.css'
 import Slider from 'react-slick';
+import axios from 'axios';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import Pagination from '../../Paginations/PropertiesPagination/Index'
@@ -193,7 +194,22 @@ const Properties = () => {
 
         }
     ];
-
+     
+    const [properties, setProperty] = useState("");
+    useEffect(() => {
+      // Fetch property details when the component mounts
+      const fetchProperty = async () => {
+        try {
+          const response = await axios.get(`http://localhost:3005/api/tasks/properties`);
+          console.log("data",response.data)
+          setProperty(response.data);
+        } catch (error) {
+          console.error('Error fetching property details:', error);
+        }
+      };
+  
+      fetchProperty();
+    }, []);
 
     return (
         <Fragment>
@@ -226,7 +242,7 @@ const Properties = () => {
                             </div>
                         </div>
                     </div> */}
-                    <Pagination itemsPerPage={5} properties={propertyData} />
+                    <Pagination itemsPerPage={5} properties={properties} />
                 </Col>
             </Row>
         </Fragment>

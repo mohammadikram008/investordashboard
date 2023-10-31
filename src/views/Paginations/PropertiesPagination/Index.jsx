@@ -45,12 +45,14 @@ const Index = ({ properties, itemsp, Portfolio }) => {
   };
 
   const renderProperties = () => {
-    const filteredProperties = filterProperties();
+    let filteredProperties = filterProperties();
     const startIndex = currentPage * pageSize;
     const endIndex = startIndex + pageSize;
-
+    if (!Array.isArray(filteredProperties)) {
+      filteredProperties = [];
+    }
     return filteredProperties.slice(startIndex, endIndex).map((property, index) => (
-      <tr key={property.id} onClick={() => handleNavigation()} className='table-row-data'>
+      <tr key={property.id} onClick={() => handleNavigation(property)} className='table-row-data'>
         <td>{index}</td>
         <td>{property.name}</td>
         <td>{property.address}</td>
@@ -92,7 +94,7 @@ const Index = ({ properties, itemsp, Portfolio }) => {
   };
 
   const handleNavigation = (prop) => {
-
+ 
     navigate('/explore/propertydetail', { state: prop });
   };
 
